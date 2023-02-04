@@ -10,7 +10,7 @@ export(Array, Texture) var turnip_arts
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
-	$Sprite.texture = load(turnip_art)
+	$Sprite.texture = turnip_art
 	
 	init_flee_params()
 	
@@ -36,3 +36,11 @@ func flee(delta):
 func _on_Player_bite(id):
 	if self.turnip_id == id:
 		$sfx.play()
+
+func set_position(pos : Vector2):
+
+	var transform = .get_transform()
+
+	# There's no way this is the right way to do this, but lol game jam.
+	transform.x = Vector2(pos.x, 0)
+	transform.y = Vector2(0, pos.y)

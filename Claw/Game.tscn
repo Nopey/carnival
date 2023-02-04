@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Claw/Turnip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://large_nimbus.tres" type="Theme" id=3]
+[ext_resource path="res://Claw/GameManager.gd" type="Script" id=4]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+turnip = ExtResource( 1 )
+max_turnips = 10
 
 [node name="Timer" type="RichTextLabel" parent="."]
 margin_right = 200.0
@@ -26,17 +30,3 @@ fit_content_height = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 670, 280 )
-
-[node name="Turnip" parent="." instance=ExtResource( 1 )]
-position = Vector2( 330, 226 )
-turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]
-
-[node name="Turnip2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 905, 161 )
-turnip_id = 1
-turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]
-
-[node name="Turnip3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 296, 555 )
-turnip_id = 2
-turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]

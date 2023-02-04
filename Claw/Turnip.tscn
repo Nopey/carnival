@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Claw/Turnip.gd" type="Script" id=1]
 [ext_resource path="res://Claw/turnip_inanimate1.png" type="Texture" id=2]
@@ -10,8 +10,8 @@ radius = 50.0
 
 [node name="Turnip" type="Area2D"]
 script = ExtResource( 1 )
-turnip_arts = [ ExtResource( 2 ), ExtResource( 3 ) ]
 flee_rate = 10.0
+turnip_arts = [ ExtResource( 2 ), ExtResource( 3 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
