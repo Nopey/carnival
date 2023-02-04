@@ -9,6 +9,7 @@ radius = 50.0
 
 [node name="Turnip" type="Area2D"]
 script = ExtResource( 1 )
+flee_rate = 10.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -19,3 +20,5 @@ shape = SubResource( 7 )
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 bus = "Turnips"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

@@ -27,9 +27,7 @@ func init_flee_params():
 
 	var unit_vec = Vector2(1.0,1.0)
 	var rand_rotation = 2*PI*randf()				# to do: technically we need to init the rand somewhere
-	flee_path = unit_vec.rotated(rand_rotation)	
-
-	flee_rate = 10.0 								# to do: tune
+	flee_path = unit_vec.rotated(rand_rotation)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
