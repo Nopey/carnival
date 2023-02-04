@@ -13,6 +13,7 @@ radius = 50.0
 
 [node name="Turnip" type="Area2D"]
 script = ExtResource( 1 )
+flee_rate = 10.0
 turnip_arts = [ ExtResource( 2 ), ExtResource( 3 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -53,3 +54,4 @@ texture = ExtResource( 7 )
 spread = 180.0
 gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

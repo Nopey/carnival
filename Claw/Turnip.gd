@@ -15,7 +15,7 @@ export var max_dist: float = 500  # ugly fallback for bucket failure
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
-	$Sprite.texture = load(turnip_art)
+	$Sprite.texture = turnip_art
 	
 	init_flee_params()
 
@@ -23,9 +23,9 @@ func init_flee_params():
 
 	var unit_vec = Vector2(0.0,1.0)
 	var rand_rotation = 2*PI*randf()				# to do: technically we need to init the rand somewhere
-	flee_path = unit_vec.rotated(rand_rotation)	
 
 	flee_rate = NOMINAL_FLEE_RATE 								# to do: tune
+	flee_path = unit_vec.rotated(rand_rotation)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,3 +56,11 @@ func _on_Player_bite():
 	$idle_particles.emitting = false
 	$eat_particles.visible = true
 	flee_rate = 0
+
+func set_position(pos : Vector2):
+
+	var transform = .get_transform()
+
+	# There's no way this is the right way to do this, but lol game jam.
+	transform.x = Vector2(pos.x, 0)
+	transform.y = Vector2(0, pos.y)
