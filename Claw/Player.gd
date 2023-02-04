@@ -98,10 +98,18 @@ func bob_for_turnips(delta):
 			if not turnip is Turnip:
 				continue
 			turnip_in_mouth(turnip)
-			
+
 	# bump turnips out of the way
-	if bob_state == BobState.DOWN:
-		pass
+	if bob_state == BobState.DOWN || bob_state == BobState.UP || bob_state == BobState.UP_GOTCHA:
+		for area in self.get_overlapping_areas():
+			if not area is Turnip:
+				continue
+			var turnip: Turnip = area
+			if mouth.overlaps_area(turnip):
+				continue
+			var bump = (turnip.global_position - self.global_position).normalized()
+			turnip.flee_path = (turnip.flee_path + bump * delta * 500 / turnip.flee_rate).normalized()
+			turnip.flee_rate += delta * 200
 
 func is_state_done():
 	if bob_state == BobState.IDLE:
@@ -168,6 +176,7 @@ func turnip_in_mouth(turnip: Turnip):
 	turnip.get_parent().remove_child(turnip)
 	add_child(turnip)
 	turnip.set_owner(self)
+	turnip.flee_rate = 0
 	# TODO: move turnip towards center of mouth? or just use a small hitbox..
 	turnip.global_transform = turnip_transform
 	
