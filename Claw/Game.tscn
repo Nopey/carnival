@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://large_nimbus.tres" type="Theme" id=3]
 [ext_resource path="res://Claw/Bucket.tscn" type="PackedScene" id=4]
@@ -35,3 +36,9 @@ fit_content_height = true
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2( 864, 486 )
 script = ExtResource( 5 )
+
+[node name="music" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource( 1 )
+volume_db = -20.0
+autoplay = true
+bus = "Music"
