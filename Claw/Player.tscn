@@ -13,8 +13,8 @@ octaves = 1
 period = 3.0
 
 [sub_resource type="NoiseTexture" id=3]
-width = 180
-height = 260
+width = 500
+height = 1200
 noise = SubResource( 2 )
 
 [sub_resource type="CircleShape2D" id=4]
@@ -31,6 +31,7 @@ texture = SubResource( 3 )
 
 [node name="Mouth" type="Area2D" parent="."]
 position = Vector2( 1, 0 )
+scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="Mouth"]
 texture = ExtResource( 3 )

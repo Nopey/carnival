@@ -40,7 +40,7 @@ func walk(delta):
 	self.translate(input * speed * delta)
 
 func gentle_spin():
-	self.rotation = cos(OS.get_ticks_msec() / 1000.0 * 0.4) * 0.25 + 0.7
+	self.rotation = sin(OS.get_ticks_msec() / 1000.0 * 0.4) * 0.1
 
 enum BobState {
 	IDLE,
