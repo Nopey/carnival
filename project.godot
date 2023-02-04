@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Bucket",
+"language": "GDScript",
+"path": "res://Claw/Bucket.gd"
+}, {
 "base": "Node2D",
 "class": "GameManager",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Claw/Turnip.gd"
 } ]
 _global_script_class_icons={
+"Bucket": "",
 "GameManager": "",
 "Turnip": ""
 }

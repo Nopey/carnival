@@ -8,6 +8,8 @@ export var speed: float = 200
 var time_remaining  = 60.0
 var points = 0
 
+export var screen_center: Vector2 = Vector2(600, 400)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	transition_to(BobState.IDLE)
@@ -96,6 +98,10 @@ func bob_for_turnips(delta):
 			if not turnip is Turnip:
 				continue
 			turnip_in_mouth(turnip)
+
+	for area in self.get_overlapping_areas():
+		if area is Bucket:
+			self.global_position = lerp(screen_center, self.global_position, pow(0.5, delta))
 
 	# bump turnips out of the way
 	if bob_state == BobState.DOWN || bob_state == BobState.UP || bob_state == BobState.UP_GOTCHA:
