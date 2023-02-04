@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Claw/Bucket.gd" type="Script" id=1]
+
+[node name="Bucket" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 135, 236 )
+scale = Vector2( 0.90554, 0.905844 )
+build_mode = 1
+polygon = PoolVector2Array( 577.556, 417.29, 136.935, 362.093, -29.8165, 209.749, 1.10432, -70.6523, 281.6, -234.036, 756.455, -208.645, 962.962, -11.0394, 1144.07, 2021.32, 4178.72, -1158.04, -546.635, -793.735, -500.254, 1257.39, 419.639, 1951.77, 1319.66, 1091.8, 1981.14, -234.036, 974.005, 104.875, 906.642, 334.495 )

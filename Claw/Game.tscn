@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Claw/Turnip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://large_nimbus.tres" type="Theme" id=3]
+[ext_resource path="res://Claw/Bucket.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -40,3 +41,5 @@ turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate
 position = Vector2( 296, 555 )
 turnip_id = 2
 turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]
+
+[node name="Bucket" parent="." instance=ExtResource( 4 )]
