@@ -164,6 +164,7 @@ func turnip_in_mouth(turnip: Turnip):
 	turnip.global_transform = turnip_transform
 	
 	# Connect singal becuase we destroyed the original turnip.
+	# warning-ignore:return_value_discarded
 	connect("bite", turnip, "_on_Player_bite")
 	emit_signal("bite", turnip.turnip_id)
 	
