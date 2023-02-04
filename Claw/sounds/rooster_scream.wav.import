@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rooster_scream.wav-8f2c690c83c09a316f04f8fc95d5a3e0.sample"
+
+[deps]
+
+source_file="res://Claw/sounds/rooster_scream.wav"
+dest_files=[ "res://.import/rooster_scream.wav-8f2c690c83c09a316f04f8fc95d5a3e0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
