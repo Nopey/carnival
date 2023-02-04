@@ -43,3 +43,5 @@ turnip_id = 2
 turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
+position = Vector2( 856, 489 )
+scale = Vector2( 0.9, 0.9 )

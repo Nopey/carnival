@@ -167,7 +167,7 @@ func get_next_state():
 
 var gotcha = null
 func turnip_in_mouth(turnip: Turnip):
-	if bob_state != BobState.DOWN_HOLD || gotcha:		
+	if bob_state != BobState.DOWN_HOLD || gotcha:
 		return
 	
 	# The player has bit a turnip.		
@@ -175,8 +175,8 @@ func turnip_in_mouth(turnip: Turnip):
 	gotcha = turnip
 	turnip.get_parent().remove_child(turnip)
 	add_child(turnip)
-	turnip.set_owner(self)
 	turnip.flee_rate = 0
+	turnip.set_owner(self)
 	# TODO: move turnip towards center of mouth? or just use a small hitbox..
 	turnip.global_transform = turnip_transform
 	
@@ -184,4 +184,3 @@ func turnip_in_mouth(turnip: Turnip):
 	# warning-ignore:return_value_discarded
 	connect("bite", turnip, "_on_Player_bite")
 	emit_signal("bite", turnip.turnip_id)
-	

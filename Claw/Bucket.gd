@@ -10,7 +10,7 @@ extends Area2D
 #func _ready():
 #	pass # Replace with function body.
 
-export var target: Vector2 = Vector2(400, 400)
+export var target: Vector2 = Vector2(600, 400)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -22,3 +22,5 @@ func _process(delta):
 		var tangent = normal.tangent()
 		if turnip.flee_path.dot(normal) < 0:
 			turnip.flee_path = turnip.flee_path.reflect(tangent)
+		else:
+			turnip.flee_path = lerp(turnip.flee_path, normal, pow(0.5, delta))

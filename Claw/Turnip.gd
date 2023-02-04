@@ -9,7 +9,7 @@ export(Array, Texture) var turnip_arts
 
 const NOMINAL_FLEE_RATE = 40.0
 
-export var target: Vector2 = Vector2(400, 400)
+export var target: Vector2 = Vector2(600, 400)
 export var max_dist: float = 500  # ugly fallback for bucket failure
 
 # Called when the node enters the scene tree for the first time.
