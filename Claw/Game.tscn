@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Claw/Turnip.tscn" type="PackedScene" id=1]
+=======
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
+>>>>>>> Stashed changes
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
 
 [node name="Node2D" type="Node2D"]
@@ -14,6 +20,7 @@ fit_content_height = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 670, 280 )
+speed = 200.0
 
 [node name="Turnip" parent="." instance=ExtResource( 1 )]
 position = Vector2( 330, 226 )
@@ -22,6 +29,18 @@ position = Vector2( 330, 226 )
 position = Vector2( 905, 161 )
 turnip_id = 1
 
+<<<<<<< Updated upstream
 [node name="Turnip3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 296, 555 )
 turnip_id = 2
+=======
+[node name="GameManager" type="Node2D" parent="."]
+position = Vector2( 864, 486 )
+script = ExtResource( 5 )
+
+[node name="music" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource( 1 )
+volume_db = -20.0
+autoplay = true
+bus = "Music"
+>>>>>>> Stashed changes

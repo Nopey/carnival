@@ -77,7 +77,15 @@ func bob_for_turnips(delta):
 			if not turnip is Turnip:
 				continue
 			turnip_in_mouth(turnip)
+<<<<<<< Updated upstream
 			
+=======
+
+	#for area in self.get_overlapping_areas():
+		#if area is Bucket:
+			#self.global_position = lerp(screen_center, self.global_position, pow(0.5, delta))
+
+>>>>>>> Stashed changes
 	# bump turnips out of the way
 	if bob_state == BobState.DOWN:
 		pass
