@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "Node2D",
 "class": "GameManager",
 "language": "GDScript",
 "path": "res://Claw/GameManager.gd"
@@ -28,11 +28,15 @@ _global_script_class_icons={
 
 config/name="Carnival"
 run/main_scene="res://Claw/Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://Claw/turnip_inanimate2.png"
 
 [audio]
 
 default_bus_layout="res://Claw/claw_mixer.tres"
+
+[global]
+
+icon=false
 
 [gui]
 
