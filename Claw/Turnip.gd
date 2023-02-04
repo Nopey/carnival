@@ -1,7 +1,6 @@
 extends Area2D
 class_name Turnip
-
-export var turnip_id: int
+onready var turnip_id: int = randi()
 export var flee_path: Vector2
 export var flee_rate: float
 
