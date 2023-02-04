@@ -1,8 +1,12 @@
 extends Area2D
 
-export var mouth_path: NodePath
-onready var mouth = get_node(mouth_path)
+onready var mouth = $Mouth
+onready var timer = $"../Timer"
+onready var score = $"../Score"
 export var speed: float = 200
+
+var time_remaining  = 60.0
+var points = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +18,11 @@ func _process(delta):
 	walk(delta)
 	gentle_spin()
 	bob_for_turnips(delta)
+	time_remaining -= delta
+	if time_remaining < 0:
+		queue_free() # TODO: proper game-over state, send back to overworld
+	else:
+		timer.text = str(round(time_remaining))
 
 func walk(delta):
 	var input = Vector2(
@@ -56,7 +65,7 @@ const BOB_DOWN_HOLD_LENGTH: float = 0.5
 const BOB_IDLE_SCALE: float = 0.65
 const BOB_DOWN_SCALE: float = 1.0
 
-func bob_for_turnips(delta):
+func bob_for_t[Purnips(delta):
 	state_progress += delta
 	if is_state_done():
 		transition_to(get_next_state())
@@ -77,6 +86,9 @@ func bob_for_turnips(delta):
 	var progress = state_progress / get_state_length()
 	var scale = lerp(from_scale, to_scale, progress)
 	self.scale = Vector2(scale, scale)
+	# hack	QA
+	$BodySprite.modulate = lerp(Color.brown, Color.white, scale)
+	$Mouth/Sprite.modulate = lerp(Color.brown, Color.white, scale)
 
 	# grab turnips
 	if bob_state == BobState.DOWN_HOLD && !gotcha:
@@ -117,7 +129,8 @@ func transition_to(state):
 		BobState.UP_GOTCHA:
 			gotcha.queue_free()
 			gotcha = null
-			# TODO: increase points
+			points += 1
+			score.text = str(points)
 
 	bob_state = state
 
