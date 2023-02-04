@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/splash_1.wav-88f63018e845288beb5536c528cbf189.sample"
+
+[deps]
+
+source_file="res://Claw/sounds/splash_1.wav"
+dest_files=[ "res://.import/splash_1.wav-88f63018e845288beb5536c528cbf189.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

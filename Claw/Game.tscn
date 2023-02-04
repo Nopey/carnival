@@ -26,7 +26,6 @@ fit_content_height = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 670, 280 )
-speed = null
 
 [node name="Turnip" parent="." instance=ExtResource( 1 )]
 position = Vector2( 330, 226 )

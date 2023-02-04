@@ -8,6 +8,8 @@ export var speed: float = 200
 var time_remaining  = 60.0
 var points = 0
 
+signal bite(id)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	transition_to(BobState.IDLE)
@@ -65,7 +67,7 @@ const BOB_DOWN_HOLD_LENGTH: float = 0.5
 const BOB_IDLE_SCALE: float = 0.65
 const BOB_DOWN_SCALE: float = 1.0
 
-func bob_for_t[Purnips(delta):
+func bob_for_turnips(delta):
 	state_progress += delta
 	if is_state_done():
 		transition_to(get_next_state())
@@ -157,9 +159,10 @@ func get_next_state():
 
 var gotcha = null
 func turnip_in_mouth(turnip: Turnip):
-	if bob_state != BobState.DOWN_HOLD || gotcha:
+	if bob_state != BobState.DOWN_HOLD || gotcha:		
 		return
-
+	
+	# The player has bit a turnip.		
 	var turnip_transform = turnip.global_transform
 	gotcha = turnip
 	turnip.get_parent().remove_child(turnip)
@@ -167,3 +170,9 @@ func turnip_in_mouth(turnip: Turnip):
 	turnip.set_owner(self)
 	# TODO: move turnip towards center of mouth? or just use a small hitbox..
 	turnip.global_transform = turnip_transform
+	
+	# Connect singal becuase we destroyed the original turnip.
+	# warning-ignore:return_value_discarded
+	connect("bite", turnip, "_on_Player_bite")
+	emit_signal("bite", turnip.turnip_id)
+	
