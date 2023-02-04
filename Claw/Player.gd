@@ -4,7 +4,6 @@ export var mouth_path: NodePath
 onready var mouth = get_node(mouth_path)
 export var speed: float = 200
 
-
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 #	pass # Replace with function body.
@@ -73,9 +72,9 @@ func bob_for_turnips(delta):
 	# grab turnips
 	if bob_state == BobState.DOWN_HOLD && !gotcha:
 		for turnip in mouth.get_overlapping_areas():
-			#if turnip is not Turnip:
-			#	continue
-			pass
+			if not turnip is Turnip:
+				continue
+			turnip_in_mouth(turnip)
 			
 	# bump turnips out of the way
 	if bob_state == BobState.DOWN:
@@ -114,6 +113,7 @@ func transition_to(state):
 			state_progress = 0
 		BobState.UP_GOTCHA:
 			gotcha.queue_free() # TODO: hold turnip in mouth
+			gotcha = null
 			# TODO: remove grabbed turnip, increase points
 
 	bob_state = state
@@ -128,6 +128,7 @@ func transition_to(state):
 		BobState.UP:
 			pass
 		BobState.UP_GOTCHA:
+			$sfx.play()
 			pass
 		BobState.IDLE:
 			pass
@@ -148,8 +149,13 @@ func get_next_state():
 			return BobState.IDLE
 
 var gotcha = null
-func turnip_in_mouth(turnip):
+func turnip_in_mouth(turnip: Turnip):
 	if bob_state != BobState.DOWN_HOLD || gotcha:
 		return
 
+	var turnip_transform = turnip.global_transform
 	gotcha = turnip
+	turnip.get_parent().remove_child(turnip)
+	add_child(turnip)
+	turnip.set_owner(self)
+	turnip.global_transform = turnip_transform

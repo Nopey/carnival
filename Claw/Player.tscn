@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Claw/Player.gd" type="Script" id=1]
+[ext_resource path="res://Claw/sfx.ogg" type="AudioStream" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 100.0
+height = 80.0
+
+[sub_resource type="OpenSimplexNoise" id=2]
+octaves = 1
+period = 3.0
+
+[sub_resource type="NoiseTexture" id=3]
+width = 180
+height = 260
+noise = SubResource( 2 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 50.0
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+width = 80
+height = 80
+noise = SubResource( 5 )
+
+[node name="Player" type="Area2D"]
+script = ExtResource( 1 )
+mouth_path = NodePath("Mouth")
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="BodySprite" type="Sprite" parent="."]
+texture = SubResource( 3 )
+
+[node name="Mouth" type="Area2D" parent="."]
+position = Vector2( 1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouth"]
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Mouth"]
+texture = SubResource( 6 )
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
