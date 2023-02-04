@@ -16,9 +16,6 @@ script = ExtResource( 1 )
 flee_rate = 10.0
 turnip_arts = [ ExtResource( 2 ), ExtResource( 3 ) ]
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
 
@@ -54,4 +51,8 @@ texture = ExtResource( 7 )
 spread = 180.0
 gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
+
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
