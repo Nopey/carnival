@@ -25,3 +25,5 @@ turnip_id = 1
 [node name="Turnip3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 296, 555 )
 turnip_id = 2
+
+[connection signal="bite" from="Player" to="Turnip" method="_on_Player_bite"]

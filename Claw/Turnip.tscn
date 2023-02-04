@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Claw/Turnip.gd" type="Script" id=1]
 [ext_resource path="res://Claw/turnip_inanimate2.png" type="Texture" id=2]
+[ext_resource path="res://Claw/sounds/scream_short_1.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 50.0
@@ -14,3 +15,7 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "Turnips"

@@ -4,6 +4,8 @@ export var mouth_path: NodePath
 onready var mouth = get_node(mouth_path)
 export var speed: float = 200
 
+signal bite(id)
+
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 #	pass # Replace with function body.
@@ -150,12 +152,18 @@ func get_next_state():
 
 var gotcha = null
 func turnip_in_mouth(turnip: Turnip):
-	if bob_state != BobState.DOWN_HOLD || gotcha:
+	if bob_state != BobState.DOWN_HOLD || gotcha:		
 		return
-
+	
+	# The player has bit a turnip.		
 	var turnip_transform = turnip.global_transform
 	gotcha = turnip
 	turnip.get_parent().remove_child(turnip)
 	add_child(turnip)
 	turnip.set_owner(self)
 	turnip.global_transform = turnip_transform
+	
+	# Connect singal becuase we destroyed the original turnip.
+	connect("bite", turnip, "_on_Player_bite")
+	emit_signal("bite", turnip.turnip_id)
+	
