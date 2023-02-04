@@ -24,6 +24,10 @@ config/name="Carnival"
 run/main_scene="res://Claw/Game.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://Claw/claw_mixer.tres"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
