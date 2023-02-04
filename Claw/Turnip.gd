@@ -9,7 +9,7 @@ export(Array, Texture) var turnip_arts
 const NOMINAL_FLEE_RATE = 40.0
 
 export var target: Vector2 = Vector2(600, 400)
-export var max_dist: float = 500  # ugly fallback for bucket failure
+export var max_dist: float = 800  # ugly fallback for bucket failure
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,3 +63,9 @@ func set_position(pos : Vector2):
 	# There's no way this is the right way to do this, but lol game jam.
 	transform.x = Vector2(pos.x, 0)
 	transform.y = Vector2(0, pos.y)
+
+
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	var offset = global_position - target
+	flee_path = -offset.normalized()
+	flee_rate = 100
