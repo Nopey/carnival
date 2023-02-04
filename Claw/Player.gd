@@ -5,8 +5,8 @@ onready var mouth = get_node(mouth_path)
 export var speed: float = 200
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass # Replace with function body.
+func _ready():
+	transition_to(BobState.IDLE)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,13 +38,22 @@ enum BobState {
 	UP,
 	UP_GOTCHA # got the turnip
 }
+
+onready var bob_mouths = {
+	BobState.IDLE:		load("res://Claw/carrot_face.png"),
+	BobState.DOWN:		load("res://Claw/carrot_face_down.png"),
+	BobState.DOWN_HOLD:	load("res://Claw/carrot_face_down_hold.png"),
+	BobState.UP:		load("res://Claw/carrot_face.png"),
+	BobState.UP_GOTCHA:	load("res://Claw/carrot_face.png")
+}
+
 var bob_state = BobState.IDLE
 var state_progress = 0
 
-const BOB_DOWN_LENGTH: float = 3.0
-const BOB_DOWN_HOLD_LENGTH: float = 0.3
+const BOB_DOWN_LENGTH: float = 2.5
+const BOB_DOWN_HOLD_LENGTH: float = 0.5
 
-const BOB_IDLE_SCALE: float = 0.5
+const BOB_IDLE_SCALE: float = 0.65
 const BOB_DOWN_SCALE: float = 1.0
 
 func bob_for_turnips(delta):
@@ -100,38 +109,23 @@ func get_state_length():
 			return INF
 
 func transition_to(state):
-	if state == bob_state:
-		# no-op
-		return
-
-	print("BobState transition: ", BobState.keys()[bob_state], " to ", BobState.keys()[state])
-
 	# from-state
 	state_progress -= get_state_length()
 	match bob_state:
 		BobState.IDLE:
 			state_progress = 0
 		BobState.UP_GOTCHA:
-			gotcha.queue_free() # TODO: hold turnip in mouth
+			gotcha.queue_free()
 			gotcha = null
-			# TODO: remove grabbed turnip, increase points
+			# TODO: increase points
 
 	bob_state = state
 
 	# to-state
-	# TODO: SET GRAPHICS
+	$Mouth/Sprite.texture = bob_mouths[bob_state]
 	match bob_state:
-		BobState.DOWN:
-			pass
-		BobState.DOWN_HOLD:
-			pass
-		BobState.UP:
-			pass
 		BobState.UP_GOTCHA:
-			$sfx.play()
-			pass
-		BobState.IDLE:
-			pass
+			$bite_sfx.play()
 
 func get_next_state():
 	match bob_state:
@@ -158,4 +152,5 @@ func turnip_in_mouth(turnip: Turnip):
 	turnip.get_parent().remove_child(turnip)
 	add_child(turnip)
 	turnip.set_owner(self)
+	# TODO: move turnip towards center of mouth? or just use a small hitbox..
 	turnip.global_transform = turnip_transform

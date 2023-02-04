@@ -17,11 +17,14 @@ position = Vector2( 670, 280 )
 
 [node name="Turnip" parent="." instance=ExtResource( 1 )]
 position = Vector2( 330, 226 )
+turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]
 
 [node name="Turnip2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 905, 161 )
 turnip_id = 1
+turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]
 
 [node name="Turnip3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 296, 555 )
 turnip_id = 2
+turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate2.png" ]

@@ -3,22 +3,12 @@ class_name Turnip
 
 export var turnip_id: int
 
-const turnip_arts = [
-	"res://Claw/turnip_inanimate1.png",
-	"res://Claw/turnip_inanimate2.png"
-]
-
+export(Array, Texture) var turnip_arts
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
-
-	var texture = ImageTexture.new()
-	var image = Image.new()
-	image.load(turnip_art)
-	texture.create_from_image(image)
-	$Sprite.texture = texture
-
+	$Sprite.texture = load(turnip_art)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
