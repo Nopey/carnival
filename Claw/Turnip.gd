@@ -51,6 +51,8 @@ func flee(delta):
 		flee_rate = 0
 		flee_path = Vector2.ZERO
 
-func _on_Player_bite(id):
-	if self.turnip_id == id:
-		$sfx.play()
+func _on_Player_bite():
+	$sfx.play()
+	$idle_particles.emitting = false
+	$eat_particles.visible = true
+	flee_rate = 0

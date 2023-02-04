@@ -7,24 +7,6 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Timer" type="RichTextLabel" parent="."]
-margin_right = 200.0
-margin_bottom = 200.0
-rect_pivot_offset = Vector2( 0.5, 0 )
-theme = ExtResource( 3 )
-visible_characters = 2
-text = "60"
-
-[node name="Score" type="RichTextLabel" parent="."]
-margin_left = 480.0
-margin_right = 580.0
-margin_bottom = 45.0
-grow_horizontal = 2
-rect_pivot_offset = Vector2( 0.5, 0 )
-theme = ExtResource( 3 )
-text = "0"
-fit_content_height = true
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 670, 280 )
 
@@ -45,3 +27,21 @@ turnip_arts = [ "res://Claw/turnip_inanimate1.png", "res://Claw/turnip_inanimate
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
 position = Vector2( 856, 489 )
 scale = Vector2( 0.9, 0.9 )
+
+[node name="Timer" type="RichTextLabel" parent="."]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_pivot_offset = Vector2( 0.5, 0 )
+theme = ExtResource( 3 )
+visible_characters = 2
+text = "60"
+
+[node name="Score" type="RichTextLabel" parent="."]
+margin_left = 480.0
+margin_right = 580.0
+margin_bottom = 74.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 0.5, 0 )
+theme = ExtResource( 3 )
+text = "0"
+fit_content_height = true
