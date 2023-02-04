@@ -5,21 +5,12 @@ export var turnip_id: int
 export var flee_path: Vector2
 export var flee_rate: float
 
-const turnip_arts = [
-	"res://Claw/turnip_inanimate1.png",
-	"res://Claw/turnip_inanimate2.png"
-]
-
+export(Array, Texture) var turnip_arts
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
-
-	var texture = ImageTexture.new()
-	var image = Image.new()
-	image.load(turnip_art)
-	texture.create_from_image(image)
-	$Sprite.texture = texture
+	$Sprite.texture = load(turnip_art)
 	
 	init_flee_params()
 	
@@ -28,7 +19,6 @@ func init_flee_params():
 	var unit_vec = Vector2(1.0,1.0)
 	var rand_rotation = 2*PI*randf()				# to do: technically we need to init the rand somewhere
 	flee_path = unit_vec.rotated(rand_rotation)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
