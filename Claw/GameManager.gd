@@ -36,5 +36,4 @@ func create_turnip():
 
 func get_random_position():
 	var pos = self.global_position + spawn_radius * Vector2(randf() * 2.0 - 1.0, randf() * 2.0 - 1.0).normalized()
-	print(pos)
 	return pos
