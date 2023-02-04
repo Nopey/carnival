@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Claw/Player.gd" type="Script" id=1]
-[ext_resource path="res://Claw/sfx.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Claw/sounds/bite.wav" type="AudioStream" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 100.0
