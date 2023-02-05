@@ -24,7 +24,7 @@ func _process(delta):
 	gentle_spin()
 	bob_for_turnips(delta)
 
-	var mouth_art = bob_mouths[bob_state]
+	var mouth_art = bob_mouths[Global.character][bob_state]
 	if mouth_art is Array:
 		var idx = (state_progress * ANIM_SPEED) as int % mouth_art.size()
 		mouth_art = mouth_art[idx]
@@ -63,14 +63,22 @@ enum BobState {
 	UP_GARBAGE # got garbage, yuck!
 }
 
+const Character = Global.Character
+
 onready var bob_mouths = {
-	BobState.IDLE:			load("res://Claw/carrot_face.png"),
-	BobState.DOWN:			load("res://Claw/carrot_face_down.png"),
-	BobState.DOWN_HOLD:		load("res://Claw/carrot_face_down_hold.png"),
-	BobState.UP:			load("res://Claw/carrot_face.png"),
-	# two images: animates chewing
-	BobState.UP_GOTCHA:		[load("res://Claw/carrot_face_down_hold.png"), load("res://Claw/carrot_face_down.png")],
-	BobState.UP_GARBAGE:	load("res://Claw/carrot_face_distress.png"),
+	Character.Carrot: {
+		BobState.IDLE:			load("res://Claw/carrot_face.png"),
+		BobState.DOWN:			load("res://Claw/carrot_face_down.png"),
+		BobState.DOWN_HOLD:		load("res://Claw/carrot_face_down_hold.png"),
+		BobState.UP:			load("res://Claw/carrot_face.png"),
+		# two images: animates chewing
+		BobState.UP_GOTCHA:		[load("res://Claw/carrot_face_down_hold.png"), load("res://Claw/carrot_face_down.png")],
+		BobState.UP_GARBAGE:	load("res://Claw/carrot_face_distress.png")
+	},
+	Character.Potato: {
+	},
+	Character.Celeriac: {
+	}
 }
 # speaking of chewing
 const ANIM_SPEED = 8

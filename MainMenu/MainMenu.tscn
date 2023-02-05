@@ -11,6 +11,8 @@
 [ext_resource path="res://MainMenu/CSELECTBearB.png" type="Texture" id=9]
 [ext_resource path="res://MainMenu/CREDITRootB.png" type="Texture" id=10]
 [ext_resource path="res://Claw/carrot_face_distress.png" type="Texture" id=11]
+[ext_resource path="res://MainMenu/RBeer_right_colour.png" type="Texture" id=12]
+[ext_resource path="res://MainMenu/RBeer_left_colour.png" type="Texture" id=13]
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=12]
 [ext_resource path="res://MainMenu/sounds/ambience.wav" type="AudioStream" id=13]
 
@@ -22,7 +24,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Play" type="Area2D" parent="."]
-position = Vector2( 941, 596 )
+position = Vector2( 941, 623 )
 script = ExtResource( 6 )
 hover_sprite = ExtResource( 8 )
 
@@ -65,6 +67,17 @@ hover_sprite = ExtResource( 11 )
 texture = ExtResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Basket"]
+polygon = PoolVector2Array( -37, 195, -37, -51, -71, -51, -81, -105, -141, -108, -138, -182, -77, -239, 74, -246, 148, -219, 108, -142, 94, -98, 94, -71, 60, -54, 57, 198 )
+
+[node name="RBeerLeftColour" type="Sprite" parent="."]
+position = Vector2( 1394, 262 )
+scale = Vector2( 0.726027, 0.726027 )
+texture = ExtResource( 13 )
+
+[node name="RBeerRightColour" type="Sprite" parent="."]
+position = Vector2( 513, 262 )
+scale = Vector2( 0.67, 0.67 )
+texture = ExtResource( 12 )
 
 [node name="ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
