@@ -40,6 +40,10 @@ config/icon="res://Claw/turnip_debris2.png"
 
 default_bus_layout="res://Claw/audio_mixer.tres"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [display]
 
 window/size/width=1920

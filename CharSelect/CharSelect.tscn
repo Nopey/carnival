@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://CharSelect/stumps.png" type="Texture" id=1]
+[ext_resource path="res://DumbButton.gd" type="Script" id=2]
+[ext_resource path="res://CharSelect/potato.png" type="Texture" id=3]
+[ext_resource path="res://CharSelect/carrot.png" type="Texture" id=4]
+[ext_resource path="res://CharSelect/celeriac.png" type="Texture" id=5]
+[ext_resource path="res://BackButton.png" type="Texture" id=6]
+[ext_resource path="res://CharSelect/Selected.gd" type="Script" id=7]
+[ext_resource path="res://CharSelect/CharSelect.gd" type="Script" id=8]
+[ext_resource path="res://Claw/garbage/birdtrap.png" type="Texture" id=9]
+[ext_resource path="res://CharSelect/selected.png" type="Texture" id=10]
+[ext_resource path="res://CharSelect/carrot_hover.png" type="Texture" id=11]
+
+[node name="CharSelect" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Selected" type="Sprite" parent="."]
+position = Vector2( 828, 762 )
+texture = ExtResource( 10 )
+script = ExtResource( 7 )
+
+[node name="Stumps" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Carrot" type="Area2D" parent="Stumps"]
+script = ExtResource( 2 )
+hover_sprite = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stumps/Carrot"]
+polygon = PoolVector2Array( 160, 1038, 184, 769, 66, 615, 80, 349, 179, 270, 166, 137, 228, 68, 293, 17, 341, 23, 362, 393, 443, 1052 )
+
+[node name="Sprite" type="Sprite" parent="Stumps/Carrot"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Potato" type="Area2D" parent="Stumps"]
+script = ExtResource( 2 )
+hover_sprite = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Stumps/Potato"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stumps/Potato"]
+polygon = PoolVector2Array( 712, 1062, 1045, 1045, 1089, 890, 1183, 870, 1183, 793, 1079, 685, 1058, 658, 1065, 537, 1109, 248, 1089, 235, 857, 292, 688, 265, 641, 352, 628, 541, 497, 695, 524, 870 )
+
+[node name="Celeriac" type="Area2D" parent="Stumps"]
+script = ExtResource( 2 )
+hover_sprite = ExtResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stumps/Celeriac"]
+polygon = PoolVector2Array( 1728, 884, 1768, 695, 1634, 534, 1634, 453, 1657, 379, 1758, 272, 1819, 127, 1687, 56, 1499, 63, 1331, 29, 1277, 53, 1284, 110, 1341, 198, 1388, 248, 1388, 319, 1449, 386, 1486, 467, 1452, 510, 1317, 601, 1304, 642, 1344, 843, 1445, 921, 1398, 1055, 1748, 1062, 1677, 917 )
+
+[node name="Sprite" type="Sprite" parent="Stumps/Celeriac"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Back" type="Area2D" parent="."]
+position = Vector2( 114, 115 )
+rotation = -0.685963
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Back"]
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Back"]
+polygon = PoolVector2Array( -58, 64, -17, 60, 123, 28, 122, -24, 102, -67, 10, -60, -56, -32, -128, 9, -101, 43 )
+
+[connection signal="input_event" from="Stumps/Carrot" to="Stumps/Carrot" method="_on_input_event"]
+[connection signal="mouse_entered" from="Stumps/Carrot" to="Stumps/Carrot" method="_on_hover_start"]
+[connection signal="mouse_exited" from="Stumps/Carrot" to="Stumps/Carrot" method="_on_hover_end"]
+[connection signal="pressed" from="Stumps/Carrot" to="." method="_on_Carrot_pressed"]
+[connection signal="input_event" from="Stumps/Potato" to="Stumps/Potato" method="_on_input_event"]
+[connection signal="mouse_entered" from="Stumps/Potato" to="Stumps/Potato" method="_on_hover_start"]
+[connection signal="mouse_exited" from="Stumps/Potato" to="Stumps/Potato" method="_on_hover_end"]
+[connection signal="pressed" from="Stumps/Potato" to="." method="_on_Potato_pressed"]
+[connection signal="input_event" from="Stumps/Celeriac" to="Stumps/Celeriac" method="_on_input_event"]
+[connection signal="mouse_entered" from="Stumps/Celeriac" to="Stumps/Celeriac" method="_on_hover_start"]
+[connection signal="mouse_exited" from="Stumps/Celeriac" to="Stumps/Celeriac" method="_on_hover_end"]
+[connection signal="pressed" from="Stumps/Celeriac" to="." method="_on_Celeriac_pressed"]
+[connection signal="input_event" from="Back" to="Back" method="_on_input_event"]
+[connection signal="mouse_entered" from="Back" to="Back" method="_on_hover_start"]
+[connection signal="mouse_exited" from="Back" to="Back" method="_on_hover_end"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
