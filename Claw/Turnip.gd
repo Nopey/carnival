@@ -80,8 +80,12 @@ func bump_other_turnip(area):
 		self.flee_path = self.flee_path.reflect(tangent)
 	if turnip.flee_path.dot(normal) < 0:
 		turnip.flee_path = turnip.flee_path.reflect(tangent)
+
 	self.flee_path -= normal
 	turnip.flee_path += normal
+
+	self.flee_path += Vector2(randf(), randf()) * 0.2
+
 	self.flee_path = self.flee_path.normalized()
 	turnip.flee_path = turnip.flee_path.normalized()
 	self.flee_rate_rate += 50
