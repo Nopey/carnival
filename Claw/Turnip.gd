@@ -50,6 +50,15 @@ func flee(delta):
 		flee_rate = 0
 		flee_path = Vector2.ZERO
 
+#const IDLE_SCALE: float = 1.0
+#const SUNK_SCALE: float = 1.5
+
+func sink():
+	var scale = flee_rate / NOMINAL_FLEE_RATE
+	var progress = scale / 5 + 0.5
+	$Sprite.modulate = lerp(Color.brown, Color.white, progress)
+	self.scale = Vector2(scale, scale)
+
 func _on_Player_bite():
 	$sfx.play()
 	$idle_particles.emitting = false
@@ -57,12 +66,7 @@ func _on_Player_bite():
 	flee_rate = 0
 
 func set_position(pos : Vector2):
-
-	var transform = .get_transform()
-
-	# There's no way this is the right way to do this, but lol game jam.
-	transform.x = Vector2(pos.x, 0)
-	transform.y = Vector2(0, pos.y)
+	self.global_position = pos
 
 
 func _on_VisibilityNotifier2D_viewport_exited(_viewport):
