@@ -72,11 +72,13 @@ autoplay = true
 stream = ExtResource( 12 )
 volume_db = 3.0
 
-[node name="ScoreUI" type="Label" parent="GameManager"]
-margin_left = -277.0
-margin_top = -929.0
-margin_right = 1643.0
-margin_bottom = -809.0
+[node name="UI" type="CanvasLayer" parent="GameManager"]
+
+[node name="ScoreUI" type="Label" parent="GameManager/UI"]
+margin_left = 587.0
+margin_top = -443.0
+margin_right = 2507.0
+margin_bottom = -323.0
 grow_horizontal = 2
 rect_rotation = 30.0
 theme = ExtResource( 3 )
@@ -86,11 +88,11 @@ text = "0"
 align = 1
 script = ExtResource( 11 )
 
-[node name="TimerUI" type="Label" parent="GameManager"]
-margin_left = -840.0
-margin_top = -485.0
-margin_right = -640.0
-margin_bottom = -285.0
+[node name="TimerUI" type="Label" parent="GameManager/UI"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 224.0
+margin_bottom = 201.0
 rect_pivot_offset = Vector2( 0.5, 0 )
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
@@ -98,33 +100,33 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "60"
 script = ExtResource( 6 )
 
-[node name="game_over_text" type="Label" parent="GameManager"]
-margin_left = -671.0
-margin_top = -404.0
-margin_right = 856.0
-margin_bottom = -271.0
+[node name="game_over_text" type="Label" parent="GameManager/UI"]
+margin_left = 193.0
+margin_top = 82.0
+margin_right = 1720.0
+margin_bottom = 215.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Game Is Now Over, Yes."
 align = 1
 
-[node name="score_text" type="Label" parent="GameManager"]
-margin_left = -668.0
-margin_top = -286.0
-margin_right = 859.0
-margin_bottom = -153.0
+[node name="score_text" type="Label" parent="GameManager/UI"]
+margin_left = 196.0
+margin_top = 200.0
+margin_right = 1723.0
+margin_bottom = 333.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Your Score is %s"
 align = 1
 
-[node name="stats_text" type="Label" parent="GameManager"]
-margin_left = -489.0
-margin_top = -75.0
-margin_right = 706.0
-margin_bottom = 291.0
+[node name="stats_text" type="Label" parent="GameManager/UI"]
+margin_left = 375.0
+margin_top = 411.0
+margin_right = 1570.0
+margin_bottom = 900.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
