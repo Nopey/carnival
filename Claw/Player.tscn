@@ -4,10 +4,6 @@
 [ext_resource path="res://Claw/sounds/bite.wav" type="AudioStream" id=2]
 [ext_resource path="res://Claw/carrot_face_down_hold.png" type="Texture" id=3]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 100.0
-height = 80.0
-
 [sub_resource type="OpenSimplexNoise" id=2]
 octaves = 1
 period = 3.0
@@ -17,17 +13,22 @@ width = 500
 height = 1200
 noise = SubResource( 2 )
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 50.0
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 100.0
+height = 80.0
+
+[sub_resource type="CapsuleShape2D" id=4]
+height = 40.0
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 1 )
 
-[node name="BodyCollider" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="BodySprite" type="Sprite" parent="."]
 texture = SubResource( 3 )
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
 
 [node name="Mouth" type="Area2D" parent="."]
 position = Vector2( 1, 0 )

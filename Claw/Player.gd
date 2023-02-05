@@ -88,9 +88,6 @@ func bob_for_turnips(delta):
 	var progress = state_progress / get_state_length()
 	var scale = lerp(from_scale, to_scale, progress)
 	self.scale = Vector2(scale, scale)
-	# hack	QA
-	$BodySprite.modulate = lerp(Color.brown, Color.white, scale)
-	$Mouth/Sprite.modulate = lerp(Color.brown, Color.white, scale)
 
 	# grab turnips
 	if bob_state == BobState.DOWN_HOLD && !gotcha:
