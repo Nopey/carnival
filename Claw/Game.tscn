@@ -12,8 +12,7 @@
 position = Vector2( 670, 280 )
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
-position = Vector2( 856, 489 )
-scale = Vector2( 0.9, 0.9 )
+position = Vector2( 960, 540 )
 
 [node name="Timer" type="RichTextLabel" parent="."]
 margin_right = 200.0
