@@ -63,9 +63,9 @@ func flee(delta):
 func sink():
 	if flee_rate <= 0:
 		return
-	var scale = 1 + log(flee_rate / NOMINAL_FLEE_RATE)
-	var progress = scale / 2
-	$Sprite.modulate = lerp(Color("#734E46"), Color.white, clamp(progress, 0.0, 1.0))
+	var progress = log(flee_rate / NOMINAL_FLEE_RATE)
+	var scale = 1 + progress
+	$Sprite.modulate = lerp(Color("#ffffff"), Color("#888888"), clamp(progress, 0.0, 1.0))
 	self.scale = Vector2(scale, scale)
 	self.z_index = scale
 	$idle_particles.visible = flee_rate <= NOMINAL_FLEE_RATE * 1.1
