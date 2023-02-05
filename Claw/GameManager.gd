@@ -118,6 +118,8 @@ func _on_Timer_timeout():
 		$score_text.show()
 		$stats_text.text = stats_string.format({"turnips": turnips_ate, "garbage": garbage_ate})
 		$stats_text.show()
+		yield(get_tree().create_timer(5.0), "timeout")
+		get_tree().change_scene("res://MainMenu/MainMenu.tscn")
 	
 func clean_up():
 	var children = get_children()	
