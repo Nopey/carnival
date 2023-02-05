@@ -27,7 +27,7 @@ func _ready():
 	player.connect("bitTurnip", self, "_on_Player_bitTurnip")
 	
 	timer.start(start_time)
-	for x in range(5):
+	for _x in range(5):
 		create_turnip(false)
 
 const turnip_delay = 3
