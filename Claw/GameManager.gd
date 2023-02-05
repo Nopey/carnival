@@ -20,6 +20,8 @@ export var score : int = 0
 onready var timer = $Timer
 export var score_string : String = "You devoured, %s of your kin, you monster."
 
+var spawning_allowed : bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -40,11 +42,11 @@ var next_garbage_timer = garbage_delay
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	next_turnip_timer -= delta
-	if count_turnips < max_turnips and next_turnip_timer < 0:
+	if count_turnips < max_turnips and next_turnip_timer < 0 and spawning_allowed:
 		create_turnip(false)
 	
 	next_garbage_timer -= delta	
-	if(count_garbage < max_garbage && next_garbage_timer < 0):
+	if count_garbage < max_garbage and next_garbage_timer < 0 and spawning_allowed:
 		create_garbage()
 		
 	increase_difficulty()
@@ -89,6 +91,7 @@ func get_random_position():
 	return pos
 
 func _on_Timer_timeout():
+	spawning_allowed = false
 	clean_up()
 	$gameover.play()
 	$TimerUi.hide()
