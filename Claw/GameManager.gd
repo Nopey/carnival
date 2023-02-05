@@ -7,7 +7,7 @@ class_name GameManager
 # var b = "text"
 
 export var turnip: PackedScene = load("res://Claw/Turnip.tscn")
-export(Array, PackedScene) var turnips = [];
+export var count_turnips : int = 0
 export var max_turnips : int = 10
 export var spawn_radius: Vector2 = Vector2(1920, 1080) / 3.0
 export var start_time : float = 60 
@@ -24,14 +24,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 
-	if(turnips.size() < max_turnips):
+	if(count_turnips < max_turnips):
 		create_turnip()
 
 
 func create_turnip():
 
 	var new_turnip = turnip.instance()
-	turnips.append(new_turnip)
+	count_turnips = count_turnips + 1
 	add_child(new_turnip)
 
 	new_turnip.set_owner(self)
@@ -49,6 +49,8 @@ func _on_Timer_timeout():
 	# to do: game over
 	pass
 	
-func _on_Turnip_die():
+func _on_Turnip_die(id):
+	
+	count_turnips = count_turnips - 1	
 	score = score + 1
 	timer.start(timer.time_left + time_reward)
