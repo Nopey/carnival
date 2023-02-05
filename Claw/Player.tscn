@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Claw/Player.gd" type="Script" id=1]
 [ext_resource path="res://Claw/sounds/bite.wav" type="AudioStream" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Claw/sounds/chewing.wav" type="AudioStream" id=5]
 [ext_resource path="res://Claw/sounds/empty_bite.wav" type="AudioStream" id=6]
 [ext_resource path="res://Claw/sounds/splash_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://Claw/sounds/boo.wav" type="AudioStream" id=8]
+[ext_resource path="res://Claw/sounds/clap.wav" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 100.0
@@ -54,4 +56,13 @@ bus = "Player"
 
 [node name="splash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+bus = "Player"
+
+[node name="boo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -15.184
+bus = "Player"
+
+[node name="clap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
 bus = "Player"
