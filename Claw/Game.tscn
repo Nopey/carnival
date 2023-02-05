@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Claw/garbage/Waterbottle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Claw/garbage/Bandage.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Claw/garbage/Birdtrap.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Claw/Turnip.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Claw/ScoreUI.gd" type="Script" id=11]
 
 [node name="Node2D" type="Node2D"]
 
@@ -27,10 +29,13 @@ rect_rotation = 30.0
 theme = ExtResource( 3 )
 text = "0"
 align = 1
+script = ExtResource( 11 )
 
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2( 864, 486 )
 script = ExtResource( 5 )
+turnip = ExtResource( 10 )
+garbage = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ) ]
 
 [node name="music" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource( 1 )
@@ -49,14 +54,5 @@ rect_pivot_offset = Vector2( 0.5, 0 )
 theme = ExtResource( 3 )
 text = "60"
 script = ExtResource( 6 )
-
-[node name="Garbage Bandage" parent="GameManager" instance=ExtResource( 8 )]
-position = Vector2( -232, -35 )
-
-[node name="Garbage Birdtrap" parent="GameManager" instance=ExtResource( 9 )]
-position = Vector2( 108, 216 )
-
-[node name="Garbage Bottle" parent="GameManager" instance=ExtResource( 7 )]
-position = Vector2( 248, -171 )
 
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_Timer_timeout"]
