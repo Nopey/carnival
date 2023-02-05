@@ -89,7 +89,7 @@ onready var bob_mouths = {
 		BobState.UP:			load("res://Claw/potato_face.png"),
 		# two images: animates chewing
 		BobState.UP_GOTCHA:		[load("res://Claw/potato_face_down.png"), load("res://Claw/potato_face_down_chew.png")],
-		BobState.UP_GARBAGE:	load("res://Claw/carrot_face_distress.png")
+		BobState.UP_GARBAGE:	load("res://Claw/potato_face.png")
 	},
 	Character.Celeriac: {
 		BobState.IDLE:			load("res://Claw/carrot_face.png"),
