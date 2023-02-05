@@ -111,6 +111,7 @@ func bob_for_turnips(delta):
 			var bump = (turnip.global_position - self.global_position).normalized()
 			turnip.flee_path = (turnip.flee_path + bump * delta * 500 / turnip.flee_rate).normalized()
 			turnip.flee_rate += delta * 200
+			turnip.flee_rate_rate = 100
 
 func is_state_done():
 	if bob_state == BobState.IDLE:
@@ -170,7 +171,11 @@ var gotcha = null
 func turnip_in_mouth(turnip: Turnip):
 	if bob_state != BobState.DOWN_HOLD || gotcha:
 		return
-	
+
+	# no eating sunk turnips
+	if turnip.flee_rate > turnip.NOMINAL_FLEE_RATE * 1.5:
+		return
+
 	# The player has bit a turnip.		
 	var turnip_transform = turnip.global_transform
 	gotcha = turnip
