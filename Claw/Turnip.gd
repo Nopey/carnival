@@ -12,7 +12,7 @@ const NOMINAL_FLEE_RATE = 40.0
 export var target: Vector2 = Vector2(600, 400)
 export var max_dist: float = 800  # ugly fallback for bucket failure
 
-signal die()
+signal die(id)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -78,7 +78,7 @@ func _on_Player_bite():
 	$eat_particles.visible = true
 	$Sprite.visible = false
 	flee_rate = 0
-	emit_signal("die")
+	emit_signal("die", turnip_id)
 
 func set_position(pos : Vector2):
 	self.global_position = pos

@@ -48,6 +48,13 @@ func _on_Timer_timeout():
 	# to do: game over
 	pass
 	
-func _on_Turnip_die():
+func _on_Turnip_die(id):
+	
+	delete_turnip(id)
+	
 	score = score + 1
 	$Timer.start($Timer.time_left + time_reward)
+	
+func delete_turnip(id):
+	
+	var turnip = turnips.find(Turnip)
