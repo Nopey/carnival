@@ -184,14 +184,12 @@ func transition_to(state):
 			state_progress = 0
 		BobState.UP_GOTCHA:
 			emit_signal("bitTurnip")
-			score.text = str(points)
 
 			gotcha.queue_free()
 			gotcha = null
 		BobState.UP_GARBAGE:
-			emit_signal("bitGarbage")
-			score.text = str(points)
 
+			emit_signal("bitGarbage")
 			gotcha.queue_free()
 			gotcha = null
 
