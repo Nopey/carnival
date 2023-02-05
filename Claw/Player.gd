@@ -94,12 +94,14 @@ func bob_for_turnips(delta):
 		var best_turnip: Turnip = null
 		var best_distance: float
 		for area in mouth.get_overlapping_areas():
+			# only eat turnips (and garbage)
 			if not area is Turnip:
 				continue
 			var turnip: Turnip = area
 			# no eating sunk turnips
 			if turnip.flee_rate > turnip.NOMINAL_FLEE_RATE * 1.5:
 				continue
+			# closest turnip is the only one we eat
 			var turnip_dist: float = turnip.global_position.distance_to(self.global_position)
 			if best_turnip and best_distance < turnip_dist:
 				continue

@@ -16,7 +16,6 @@
 position = Vector2( 670, 280 )
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
-position = Vector2( 960, 540 )
 
 [node name="Score" type="Label" parent="."]
 margin_left = 587.0
@@ -28,7 +27,6 @@ rect_rotation = 30.0
 theme = ExtResource( 3 )
 text = "0"
 align = 1
-percent_visible = -0.333333
 
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2( 864, 486 )
