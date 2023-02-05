@@ -1,7 +1,7 @@
 extends Area2D
 
 onready var mouth = $Mouth
-onready var timer = $"../Timer"
+onready var timer = $"../GameManager/Timer"
 onready var score = $"../Score"
 export var speed: float = 200
 
@@ -97,6 +97,9 @@ func bob_for_turnips(delta):
 			if not area is Turnip:
 				continue
 			var turnip: Turnip = area
+			# no eating sunk turnips
+			if turnip.flee_rate > turnip.NOMINAL_FLEE_RATE * 1.5:
+				continue
 			var turnip_dist: float = turnip.global_position.distance_to(self.global_position)
 			if best_turnip and best_distance < turnip_dist:
 				continue
@@ -183,10 +186,6 @@ func get_next_state():
 var gotcha = null
 func turnip_in_mouth(turnip: Turnip):
 	if bob_state != BobState.DOWN_HOLD || gotcha:
-		return
-
-	# no eating sunk turnips
-	if turnip.flee_rate > turnip.NOMINAL_FLEE_RATE * 1.5:
 		return
 
 	# The player has bit a turnip.		
