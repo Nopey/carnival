@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://CharSelect/stumps.png" type="Texture" id=1]
 [ext_resource path="res://DumbButton.gd" type="Script" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://BackButton.png" type="Texture" id=6]
 [ext_resource path="res://CharSelect/Selected.gd" type="Script" id=7]
 [ext_resource path="res://CharSelect/CharSelect.gd" type="Script" id=8]
-[ext_resource path="res://Claw/garbage/birdtrap.png" type="Texture" id=9]
+[ext_resource path="res://CharSelect/celeriacB.png" type="Texture" id=9]
 [ext_resource path="res://CharSelect/selected.png" type="Texture" id=10]
 [ext_resource path="res://CharSelect/carrot_hover.png" type="Texture" id=11]
+[ext_resource path="res://CharSelect/potatoB.png" type="Texture" id=12]
 
 [node name="CharSelect" type="Node2D"]
 script = ExtResource( 8 )
@@ -37,7 +38,7 @@ centered = false
 
 [node name="Potato" type="Area2D" parent="Stumps"]
 script = ExtResource( 2 )
-hover_sprite = ExtResource( 9 )
+hover_sprite = ExtResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="Stumps/Potato"]
 texture = ExtResource( 3 )
