@@ -1,10 +1,6 @@
 extends Node2D
 class_name GameManager
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export var turnip: PackedScene = load("res://Claw/Turnip.tscn")
 export var text_floater_positive: PackedScene = load("res://Claw/TextFloaterGreen.tscn")
 export var text_floater_negative: PackedScene = load("res://Claw/TextFloaterRed.tscn")
@@ -47,11 +43,11 @@ func _ready():
 	for _x in range(5):
 		create_turnip(false)
 		
-	$game_over_text.hide()
-	$score_text.hide()
-	$stats_text.hide()
-	$ScoreUI.show()
-	$TimerUI.show()
+	$UI/game_over_text.hide()
+	$UI/score_text.hide()
+	$UI/stats_text.hide()
+	$UI/ScoreUI.show()
+	$UI/TimerUI.show()
 
 const turnip_delay = 3
 var next_turnip_timer
@@ -114,14 +110,14 @@ func _on_Timer_timeout():
 	if !game_over:
 		game_over = true
 		clean_up()
-		$TimerUI.hide()
-		$ScoreUI.hide()
-		$gameover.play()
-		$game_over_text.show()
-		$score_text.text = score_string.format({"value": score})
-		$score_text.show()
-		$stats_text.text = stats_string.format({"turnips": turnips_ate, "garbage": garbage_ate})
-		$stats_text.show()
+		$UI/TimerUI.hide()
+		$UI/ScoreUI.hide()
+		$UI/gameover.play()
+		$UI/game_over_text.show()
+		$UI/score_text.text = score_string.format({"value": score})
+		$UI/score_text.show()
+		$UI/stats_text.text = stats_string.format({"turnips": turnips_ate, "garbage": garbage_ate})
+		$UI/stats_text.show()
 		yield(get_tree().create_timer(change_scene_timer), "timeout")
 		get_tree().change_scene("res://MainMenu/MainMenu.tscn")
 	
@@ -165,10 +161,10 @@ func do_negative_floaters(position, delay):
 	
 func create_text_floater_positive(text, position):
 	var new_floater = text_floater_positive.instance()
-	add_child(new_floater)
+	$UI.add_child(new_floater)
 	new_floater.setup(text, position)
 	
 func create_text_floater_negative(text, position):
 	var new_floater = text_floater_negative.instance()
-	add_child(new_floater)
+	$UI.add_child(new_floater)
 	new_floater.setup(text, position)
