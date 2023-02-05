@@ -1,10 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Claw/Turnip.gd" type="Script" id=1]
-[ext_resource path="res://Claw/turnip_inanimate1.png" type="Texture" id=2]
-[ext_resource path="res://Claw/turnip_inanimate2.png" type="Texture" id=3]
 [ext_resource path="res://Claw/sounds/scream_short_2.wav" type="AudioStream" id=4]
 [ext_resource path="res://Claw/garbage/bandage.png" type="Texture" id=5]
+[ext_resource path="res://Claw/garbage/bandage_ripple.png" type="Texture" id=6]
+
+[sub_resource type="Curve" id=2]
+max_value = 2.0
+_data = [ Vector2( 0, 0.51227 ), 0.0, 0.0, 0, 0, Vector2( 0.904362, 1.39264 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.44697, 0.666667, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 30.0
@@ -13,7 +20,6 @@ height = 100.0
 [node name="Garbage Bandage" type="Area2D"]
 script = ExtResource( 1 )
 flee_rate = 10.0
-turnip_arts = [ ExtResource( 2 ), ExtResource( 3 ) ]
 is_garbage = true
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
@@ -21,12 +27,16 @@ stream = ExtResource( 4 )
 bus = "Turnips"
 
 [node name="idle_particles" type="CPUParticles2D" parent="."]
-texture = ExtResource( 2 )
-spread = 180.0
-initial_velocity = 40.0
+position = Vector2( -60, 11 )
+amount = 2
+lifetime = 1.5
+texture = ExtResource( 6 )
+gravity = Vector2( 0, 0 )
 angular_velocity = 10.0
 angular_velocity_random = 1.0
+scale_amount_curve = SubResource( 2 )
 color = Color( 0.32549, 0.27451, 0.27451, 0.419608 )
+color_ramp = SubResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 

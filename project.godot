@@ -34,7 +34,7 @@ _global_script_class_icons={
 
 config/name="Carnival"
 run/main_scene="res://Claw/Game.tscn"
-config/icon="res://Claw/turnip_inanimate2.png"
+config/icon="res://Claw/turnip_debris2.png"
 
 [audio]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/turnip_inanimate1.png-48c6cf75d7066a93d29a0b9afd2adc5b.stex"
+path="res://.import/bottle_ripple.png-6830f7a65c135335fc67c966c6e265ff.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Claw/turnip_inanimate1.png"
-dest_files=[ "res://.import/turnip_inanimate1.png-48c6cf75d7066a93d29a0b9afd2adc5b.stex" ]
+source_file="res://Claw/garbage/bottle_ripple.png"
+dest_files=[ "res://.import/bottle_ripple.png-6830f7a65c135335fc67c966c6e265ff.stex" ]
 
 [params]
 
