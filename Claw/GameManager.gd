@@ -9,8 +9,7 @@ class_name GameManager
 export(PackedScene) var turnip = load("res://Claw/Turnip.tscn")
 export(Array, PackedScene) var turnips = [];
 export var max_turnips : int = 10
-export var spawn_radius: Vector2 = Vector2(300, 200)
-
+export var spawn_radius: Vector2 = Vector2(1920, 1080) / 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

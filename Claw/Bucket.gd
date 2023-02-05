@@ -10,7 +10,7 @@ class_name Bucket
 #func _ready():
 #	pass # Replace with function body.
 
-export var target: Vector2 = Vector2(600, 400)
+export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -18,7 +18,7 @@ func _process(delta):
 		if not area is Turnip:
 			continue
 		var turnip: Turnip = area
-		var normal = (target - turnip.global_position).normalized()
+		var normal = (screen_center - turnip.global_position).normalized()
 		var tangent = normal.tangent()
 		if turnip.flee_path.dot(normal) < 0:
 			turnip.flee_path = turnip.flee_path.reflect(tangent)

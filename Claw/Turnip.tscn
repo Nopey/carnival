@@ -35,22 +35,31 @@ color = Color( 0.32549, 0.27451, 0.27451, 0.419608 )
 visible = false
 
 [node name="eat1" type="CPUParticles2D" parent="eat_particles"]
+local_coords = false
 texture = ExtResource( 6 )
 spread = 180.0
 gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
+angle = 360.0
+angle_random = 1.0
 
 [node name="eat2" type="CPUParticles2D" parent="eat_particles"]
+local_coords = false
 texture = ExtResource( 5 )
 spread = 180.0
 gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
+angle = 360.0
+angle_random = 1.0
 
 [node name="eat3" type="CPUParticles2D" parent="eat_particles"]
+local_coords = false
 texture = ExtResource( 7 )
 spread = 180.0
 gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
+angle = 360.0
+angle_random = 1.0
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 

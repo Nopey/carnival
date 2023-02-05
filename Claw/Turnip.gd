@@ -70,7 +70,7 @@ func sink():
 func bump_other_turnip(area):
 	if not "flee_rate" in area: # hack to detect turnips without mentioning turnip
 		return
-	var turnip: Turnip = area
+	var turnip = area
 	var normal = (turnip.global_position - self.global_position).normalized()
 	var tangent = normal.tangent()
 	if self.flee_path.dot(normal) > 0:

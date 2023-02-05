@@ -8,7 +8,7 @@ export var speed: float = 200
 var time_remaining  = 60.0
 var points = 0
 
-export var screen_center: Vector2 = Vector2(600, 400)
+export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,7 +40,7 @@ func walk(delta):
 	self.translate(input * speed * delta)
 
 func gentle_spin():
-	self.rotation = sin(OS.get_ticks_msec() / 1000.0 * 0.4) * 0.1
+	self.rotation = (self.global_position.x - screen_center.x) / 2000.0
 
 enum BobState {
 	IDLE,
