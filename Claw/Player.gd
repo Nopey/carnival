@@ -9,6 +9,7 @@ var time_remaining  = 60.0
 var points = 0
 
 export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
+export var allowed_region: Vector2 = Vector2(1920, 1080) * 0.2
 
 signal bitGarbage()
 signal bitTurnip()
@@ -37,6 +38,13 @@ func walk(delta):
 		Input.get_axis("ui_up", "ui_down")
 	)
 
+	# limit within edges of board
+	var offset = global_position - screen_center;
+	if (offset / allowed_region).length() > 1:
+		var normal = offset.normalized()
+		var dot = input.dot(normal)
+		if dot > 0:
+			input -= dot * normal
 	# clamp input (unneeded?)
 	var input_length = input.length()
 	if input_length > 1:
@@ -72,8 +80,8 @@ var state_progress = 0
 const BOB_DOWN_LENGTH: float = 2.5
 const BOB_DOWN_HOLD_LENGTH: float = 0.5
 
-const BOB_IDLE_SCALE: float = 0.65
-const BOB_DOWN_SCALE: float = 1.0
+const BOB_IDLE_SCALE: float = 1.0
+const BOB_DOWN_SCALE: float = 1.5
 
 func bob_for_turnips(delta):
 	state_progress += delta
@@ -118,10 +126,6 @@ func bob_for_turnips(delta):
 		if best_turnip:
 			turnip_in_mouth(best_turnip)
 
-	for area in self.get_overlapping_areas():
-		if area is Bucket:
-			self.global_position = lerp(screen_center, self.global_position, pow(0.5, delta))
-
 	# bump turnips out of the way
 	if bob_state == BobState.DOWN || bob_state == BobState.UP || bob_state == BobState.UP_GOTCHA:
 		for area in self.get_overlapping_areas():
@@ -144,13 +148,13 @@ func is_state_done():
 func get_state_length():
 	match bob_state:
 		BobState.DOWN:
-			return 1.3
+			return 0.9
 		BobState.DOWN_HOLD:
 			return 0.2
 		BobState.UP:
-			return 1.6
+			return 1.4
 		BobState.UP_GOTCHA:
-			return 2
+			return 2.0
 		_:
 			return INF
 
