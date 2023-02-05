@@ -81,6 +81,8 @@ margin_bottom = -809.0
 grow_horizontal = 2
 rect_rotation = 30.0
 theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "0"
 align = 1
 script = ExtResource( 11 )
@@ -92,26 +94,41 @@ margin_right = -640.0
 margin_bottom = -285.0
 rect_pivot_offset = Vector2( 0.5, 0 )
 theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "60"
 script = ExtResource( 6 )
 
 [node name="game_over_text" type="Label" parent="GameManager"]
-visible = false
 margin_left = -671.0
-margin_top = -240.0
+margin_top = -404.0
 margin_right = 856.0
-margin_bottom = -120.0
+margin_bottom = -271.0
 theme = ExtResource( 3 )
-text = "The Game Is Now Over, Yes"
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Game Is Now Over, Yes."
 align = 1
 
 [node name="score_text" type="Label" parent="GameManager"]
-visible = false
+margin_left = -668.0
+margin_top = -286.0
+margin_right = 859.0
+margin_bottom = -153.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Your Score is %s"
+align = 1
+
+[node name="stats_text" type="Label" parent="GameManager"]
 margin_left = -489.0
 margin_top = -75.0
 margin_right = 706.0
 margin_bottom = 291.0
 theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "You devoured, %s of your kin and %s pound(s) of garbage, you monster."
 align = 1
 autowrap = true

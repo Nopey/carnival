@@ -9,8 +9,8 @@ var points = 0
 export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
 export var allowed_region: Vector2 = Vector2(300, 200)
 
-signal bitGarbage()
-signal bitTurnip()
+signal bitGarbage(position)
+signal bitTurnip(position)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -140,6 +140,10 @@ func bob_for_turnips(delta):
 			best_distance = turnip_dist
 		if best_turnip:
 			$splash.play()
+			if(best_turnip.is_garbage):
+				$boo.play()
+			else:
+				$clap.play()
 			turnip_in_mouth(best_turnip)			
 		else:
 			$emptybite.play()
@@ -190,20 +194,18 @@ func transition_to(state):
 	match bob_state:
 		BobState.IDLE:
 			state_progress = 0
-		BobState.UP_GOTCHA:
-			emit_signal("bitTurnip")
-
+		BobState.UP_GOTCHA:		
+			emit_signal("bitTurnip", $Mouth.get_global_position())
 			gotcha.queue_free()
 			gotcha = null
-		BobState.UP_GARBAGE:
-
-			emit_signal("bitGarbage")
+		BobState.UP_GARBAGE:			
+			emit_signal("bitGarbage", $Mouth.get_global_position())
 			gotcha.queue_free()
 			gotcha = null
 
 	bob_state = state
 	
-	if(state == BobState.IDLE):
+	if(state == BobState.IDLE || state == BobState.UP_GARBAGE):
 		$chewing.stream_paused = true	 # hack
 
 	# to-state
