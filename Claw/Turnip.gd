@@ -11,13 +11,15 @@ const NOMINAL_FLEE_RATE = 40.0
 
 export var target: Vector2 = Vector2(600, 400)
 export var max_dist: float = 800  # ugly fallback for bucket failure
+export var is_garbage: bool = false
 
 signal die()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
-	$Sprite.texture = turnip_art
+	if not is_garbage:
+		var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
+		$Sprite.texture = turnip_art
 	
 	init_flee_params()
 
@@ -86,9 +88,12 @@ func bump_other_turnip(area):
 	self.flee_rate_rate += 50
 
 func _on_Player_bite():
-	$sfx.play()
-	$idle_particles.emitting = false
-	$eat_particles.visible = true
+	if is_garbage:
+		pass # TODO: garbage eats
+	else:
+		$sfx.play()
+		$idle_particles.emitting = false
+		$eat_particles.visible = true
 	$Sprite.visible = false
 	flee_rate = 0
 	emit_signal("die")
