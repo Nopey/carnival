@@ -117,7 +117,11 @@ func bob_for_turnips(delta):
 			best_turnip = turnip
 			best_distance = turnip_dist
 		if best_turnip:
-			turnip_in_mouth(best_turnip)
+			$splash.play()
+			turnip_in_mouth(best_turnip)			
+		else:
+			$emptybite.play()
+			$splash.play()
 
 	for area in self.get_overlapping_areas():
 		if area is Bucket:
@@ -209,6 +213,6 @@ func turnip_in_mouth(turnip: Turnip):
 	add_child(turnip)
 	turnip.set_owner(self)
 	turnip.global_transform = turnip_transform
-	$chewing.stream_paused = false
+	$chewing.stream_paused = false	
 	
 	turnip._on_Player_bite()
