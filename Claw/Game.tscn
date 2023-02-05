@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Claw/fonts/carnival.tres" type="Theme" id=3]
 [ext_resource path="res://Claw/Bucket.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Claw/GameManager.gd" type="Script" id=5]
+[ext_resource path="res://Claw/TimerUI.gd" type="Script" id=6]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,14 +14,6 @@ position = Vector2( 670, 280 )
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
 position = Vector2( 960, 540 )
-
-[node name="Timer" type="RichTextLabel" parent="."]
-margin_right = 200.0
-margin_bottom = 200.0
-rect_pivot_offset = Vector2( 0.5, 0 )
-theme = ExtResource( 3 )
-visible_characters = 2
-text = "60"
 
 [node name="Score" type="RichTextLabel" parent="."]
 margin_left = 480.0
@@ -36,8 +29,23 @@ fit_content_height = true
 position = Vector2( 864, 486 )
 script = ExtResource( 5 )
 
+[node name="TimerUi" type="RichTextLabel" parent="GameManager"]
+margin_left = -864.0
+margin_top = -486.0
+margin_right = -664.0
+margin_bottom = -286.0
+rect_pivot_offset = Vector2( 0.5, 0 )
+theme = ExtResource( 3 )
+visible_characters = 2
+text = "60"
+script = ExtResource( 6 )
+
 [node name="music" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource( 1 )
 volume_db = -20.0
 autoplay = true
 bus = "Music"
+
+[node name="Timer" type="Timer" parent="GameManager"]
+
+[connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_Timer_timeout"]

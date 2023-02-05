@@ -20,11 +20,11 @@ func _process(delta):
 	walk(delta)
 	gentle_spin()
 	bob_for_turnips(delta)
-	time_remaining -= delta
-	if time_remaining < 0:
-		queue_free() # TODO: proper game-over state, send back to overworld
-	else:
-		timer.text = str(round(time_remaining))
+	#time_remaining -= delta
+	#if time_remaining < 0:
+		#queue_free() # TODO: proper game-over state, send back to overworld
+	#else:
+		#timer.text = str(round(time_remaining))
 
 func walk(delta):
 	var input = Vector2(
