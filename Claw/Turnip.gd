@@ -95,7 +95,6 @@ func _on_Player_bite():
 	if is_garbage:
 		pass # TODO: garbage eats
 	else:
-		$sfx.play()
 		$eat_particles.visible = true
 	$Sprite.visible = false
 	flee_rate = 0
@@ -103,6 +102,9 @@ func _on_Player_bite():
 func set_position(pos : Vector2):
 	self.global_position = pos
 
+func play_scream():
+	if(!$sfx.playing):
+		$sfx.play()
 
 func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	var offset = global_position - target
