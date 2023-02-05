@@ -88,11 +88,11 @@ func bump_other_turnip(area):
 	self.flee_rate_rate += 50
 
 func _on_Player_bite():
+	$idle_particles.emitting = false
 	if is_garbage:
 		pass # TODO: garbage eats
 	else:
 		$sfx.play()
-		$idle_particles.emitting = false
 		$eat_particles.visible = true
 	$Sprite.visible = false
 	flee_rate = 0

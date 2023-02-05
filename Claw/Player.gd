@@ -1,7 +1,7 @@
 extends Area2D
 
 onready var mouth = $Mouth
-onready var timer = $"../Timer"
+onready var timer = $"../GameManager/Timer"
 onready var score = $"../Score"
 export var speed: float = 200
 
@@ -93,10 +93,22 @@ func bob_for_turnips(delta):
 
 	# grab turnips
 	if bob_state == BobState.DOWN_HOLD && !gotcha:
-		for turnip in mouth.get_overlapping_areas():
-			if not turnip is Turnip:
+		var best_turnip: Turnip = null
+		var best_distance: float
+		for area in mouth.get_overlapping_areas():
+			if not area is Turnip:
 				continue
-			turnip_in_mouth(turnip)
+			var turnip: Turnip = area
+			# no eating sunk turnips
+			if turnip.flee_rate > turnip.NOMINAL_FLEE_RATE * 1.5:
+				continue
+			var turnip_dist: float = turnip.global_position.distance_to(self.global_position)
+			if best_turnip and best_distance < turnip_dist:
+				continue
+			best_turnip = turnip
+			best_distance = turnip_dist
+		if best_turnip:
+			turnip_in_mouth(best_turnip)
 
 	for area in self.get_overlapping_areas():
 		if area is Bucket:
@@ -141,11 +153,13 @@ func transition_to(state):
 		BobState.IDLE:
 			state_progress = 0
 		BobState.UP_GOTCHA:
-			gotcha.queue_free()
 			if gotcha.is_garbage:
 				emit_signal("bitGarbage")
 			gotcha = null
 			score.text = str(points)
+
+			gotcha.queue_free()
+			gotcha = null
 
 	bob_state = state
 
@@ -173,10 +187,6 @@ func get_next_state():
 var gotcha = null
 func turnip_in_mouth(turnip: Turnip):
 	if bob_state != BobState.DOWN_HOLD || gotcha:
-		return
-
-	# no eating sunk turnips
-	if turnip.flee_rate > turnip.NOMINAL_FLEE_RATE * 1.5:
 		return
 
 	# The player has bit a turnip.		
