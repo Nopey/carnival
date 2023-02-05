@@ -16,6 +16,7 @@ signal bitTurnip()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	transition_to(BobState.IDLE)
+	$chewing.play()		# hack
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -171,6 +172,9 @@ func transition_to(state):
 			gotcha = null
 
 	bob_state = state
+	
+	if(state == BobState.IDLE):
+		$chewing.stream_paused = true	 # hack
 
 	# to-state
 	match bob_state:
@@ -205,5 +209,6 @@ func turnip_in_mouth(turnip: Turnip):
 	add_child(turnip)
 	turnip.set_owner(self)
 	turnip.global_transform = turnip_transform
+	$chewing.stream_paused = false
 	
 	turnip._on_Player_bite()

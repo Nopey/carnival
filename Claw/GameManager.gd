@@ -89,6 +89,7 @@ func get_random_position():
 
 func _on_Timer_timeout():
 	# to do: game over
+	$gameover.play()
 	pass
 	
 func _on_Player_bitTurnip():	
