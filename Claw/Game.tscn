@@ -73,7 +73,7 @@ margin_bottom = -271.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "The Game Is Now Over, Yes"
+text = "Game Is Now Over, Yes."
 align = 1
 
 [node name="score_text" type="Label" parent="GameManager"]
