@@ -9,7 +9,7 @@ var time_remaining  = 60.0
 var points = 0
 
 export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
-export var allowed_region: Vector2 = Vector2(1920, 1080) * 0.2
+export var allowed_region: Vector2 = Vector2(300, 200)
 
 signal bitGarbage()
 signal bitTurnip()
