@@ -5,7 +5,9 @@ export var flee_path: Vector2
 export var flee_rate: float
 export var flee_rate_rate: float
 
-export(Array, Texture) var turnip_arts
+export(Array, Texture) var turnip_bodies
+export(Array, Texture) var turnip_ripples
+
 export(Array, AudioStream) var screams
 
 const NOMINAL_FLEE_RATE = 40.0
@@ -17,9 +19,13 @@ export var is_garbage: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_garbage:
-		var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
-		$Sprite.texture = turnip_art
-	
+		assert(turnip_bodies.size() == turnip_ripples.size())
+		assert(turnip_bodies.size() > 0)
+		var body = turnip_bodies[turnip_id % turnip_bodies.size()]
+		$Sprite.texture = body
+		var ripple = turnip_ripples[turnip_id % turnip_ripples.size()]
+		$idle_particles.texture = ripple
+
 	init_flee_params()
 
 func init_flee_params():
