@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Carnival"
-run/main_scene="res://Claw/Game.tscn"
+run/main_scene="res://MainMenu/MainMenu.tscn"
 config/icon="res://Claw/turnip_debris2.png"
 
 [audio]
