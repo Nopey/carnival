@@ -110,9 +110,9 @@ func _on_Timer_timeout():
 	if !game_over:
 		game_over = true
 		clean_up()
+		$gameover.play()
 		$UI/TimerUI.hide()
-		$UI/ScoreUI.hide()
-		$UI/gameover.play()
+		$UI/ScoreUI.hide()		
 		$UI/game_over_text.show()
 		$UI/score_text.text = score_string.format({"value": score})
 		$UI/score_text.show()
