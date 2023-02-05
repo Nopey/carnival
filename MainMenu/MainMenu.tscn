@@ -11,7 +11,7 @@
 [ext_resource path="res://MainMenu/CSELECTBearB.png" type="Texture" id=9]
 [ext_resource path="res://MainMenu/CREDITRootB.png" type="Texture" id=10]
 [ext_resource path="res://Claw/carrot_face_distress.png" type="Texture" id=11]
-[ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=12]
+[ext_resource path="res://Claw/sounds/circus1_master.wav" type="AudioStream" id=12]
 [ext_resource path="res://MainMenu/sounds/ambience.wav" type="AudioStream" id=13]
 
 [node name="MainMenu" type="Node"]
@@ -81,7 +81,7 @@ volume_db = -29.714
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = -48.286
+volume_db = -30.0
 
 [connection signal="input_event" from="Play" to="Play" method="_on_input_event"]
 [connection signal="mouse_entered" from="Play" to="Play" method="_on_hover_start"]
