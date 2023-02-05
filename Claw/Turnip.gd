@@ -3,6 +3,7 @@ class_name Turnip
 onready var turnip_id: int = randi()
 export var flee_path: Vector2
 export var flee_rate: float
+export var flee_rate_rate: float
 
 export(Array, Texture) var turnip_arts
 
@@ -28,6 +29,7 @@ func init_flee_params():
 
 	flee_rate = NOMINAL_FLEE_RATE 								# to do: tune
 	flee_path = unit_vec.rotated(rand_rotation)
+	self.rotation = 2*PI*randf()
 
 func init_timer():
 
@@ -39,6 +41,7 @@ func _process(delta):
 	gentle_spin(delta)
 	flee(delta)
 	dont_escape()
+	sink()
 
 func dont_escape():
 	var offset = global_position - target
@@ -52,7 +55,12 @@ func gentle_spin(delta):
 # The turnips float in some random straight line path.
 func flee(delta):
 	if flee_rate > 0:
-		flee_rate = lerp(NOMINAL_FLEE_RATE, flee_rate, pow(0.5, delta))
+		flee_rate = lerp(NOMINAL_FLEE_RATE, flee_rate, pow(0.1, delta))
+		flee_rate_rate = lerp(0, flee_rate_rate, pow(0.05, delta))
+		flee_rate += flee_rate_rate * delta
+		var effective_flee_rate = flee_rate / NOMINAL_FLEE_RATE
+		effective_flee_rate *= effective_flee_rate
+		effective_flee_rate *= NOMINAL_FLEE_RATE
 		self.translate(flee_path*delta*flee_rate)
 	else:
 		flee_rate = 0
@@ -62,15 +70,19 @@ func flee(delta):
 #const SUNK_SCALE: float = 1.5
 
 func sink():
-	var scale = flee_rate / NOMINAL_FLEE_RATE
-	var progress = scale / 5 + 0.5
+	if flee_rate <= 0:
+		return
+	var scale = 1 + log(flee_rate / NOMINAL_FLEE_RATE)
+	var progress = scale / 3
 	$Sprite.modulate = lerp(Color.brown, Color.white, progress)
 	self.scale = Vector2(scale, scale)
+	self.z_index = scale
 
 func _on_Player_bite():
 	$sfx.play()
 	$idle_particles.emitting = false
 	$eat_particles.visible = true
+	$Sprite.visible = false
 	flee_rate = 0
 
 func set_position(pos : Vector2):
