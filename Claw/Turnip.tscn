@@ -44,7 +44,7 @@ gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
 angle = 360.0
 angle_random = 1.0
-color = Color( 0.603922, 0.364706, 0.231373, 0.803922 )
+color = Color( 1, 1, 1, 0.803922 )
 
 [node name="eat2" type="CPUParticles2D" parent="eat_particles"]
 amount = 3
@@ -55,7 +55,7 @@ gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
 angle = 360.0
 angle_random = 1.0
-color = Color( 0.603922, 0.364706, 0.231373, 0.803922 )
+color = Color( 1, 1, 1, 0.803922 )
 
 [node name="eat3" type="CPUParticles2D" parent="eat_particles"]
 amount = 3
@@ -66,7 +66,7 @@ gravity = Vector2( 0, 40 )
 initial_velocity = 120.0
 angle = 360.0
 angle_random = 1.0
-color = Color( 0.603922, 0.364706, 0.231373, 0.803922 )
+color = Color( 1, 1, 1, 0.803922 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 

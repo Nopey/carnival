@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,23 @@
 [ext_resource path="res://Claw/barrel_top.png" type="Texture" id=14]
 [ext_resource path="res://Claw/rootbeer.png" type="Texture" id=15]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 shifteduv = UV;
+	vec2 scroll_dir = vec2(0.06, 0.1);
+    shifteduv += TIME * scroll_dir;
+    shifteduv.x += sin(TIME) * 0.1;
+	shifteduv = mod(shifteduv, 1.0);
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Sky" type="Sprite" parent="."]
@@ -31,6 +48,7 @@ texture = ExtResource( 14 )
 centered = false
 
 [node name="Rootbeer" type="Sprite" parent="."]
+material = SubResource( 2 )
 texture = ExtResource( 15 )
 centered = false
 

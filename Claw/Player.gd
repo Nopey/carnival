@@ -182,10 +182,13 @@ func transition_to(state):
 		BobState.IDLE:
 			state_progress = 0
 		BobState.UP_GOTCHA:
-			if gotcha.is_garbage:
-				emit_signal("bitGarbage")
-			else:
-				emit_signal("bitTurnip")
+			emit_signal("bitTurnip")
+			score.text = str(points)
+
+			gotcha.queue_free()
+			gotcha = null
+		BobState.UP_GARBAGE:
+			emit_signal("bitGarbage")
 			score.text = str(points)
 
 			gotcha.queue_free()
@@ -225,7 +228,7 @@ func turnip_in_mouth(turnip: Turnip):
 	if bob_state != BobState.DOWN_HOLD || gotcha:
 		return
 
-	# The player has bit a turnip.		
+	# The player has bit a turnip.
 	var turnip_transform = turnip.global_transform
 	gotcha = turnip
 	# reparent
