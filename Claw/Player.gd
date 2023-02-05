@@ -10,6 +10,8 @@ var points = 0
 
 export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
 
+signal bitGarbage()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	transition_to(BobState.IDLE)
@@ -141,9 +143,7 @@ func transition_to(state):
 		BobState.UP_GOTCHA:
 			gotcha.queue_free()
 			if gotcha.is_garbage:
-				points -= 1
-			else:
-				points += 1
+				emit_signal("bitGarbage")
 			gotcha = null
 			score.text = str(points)
 

@@ -1,7 +1,6 @@
 extends Node2D
 class_name GameManager
 
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -12,10 +11,15 @@ export var max_turnips : int = 10
 export var spawn_radius: Vector2 = Vector2(1920, 1080) / 3.0
 export var start_time : float = 60 
 export var time_reward: float = 5
+export var time_penalty: float = 5
 export var score : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	var player = get_parent().get_node("Player")
+	player.connect("bitGarbage", self, "_on_Player_bitGarbage")
+	
 	$Timer.start(start_time)
 	pass # Replace with function body.
 
@@ -53,3 +57,7 @@ func _on_Turnip_die(id):
 	count_turnips = count_turnips - 1	
 	score = score + 1
 	$Timer.start($Timer.time_left + time_reward)
+	
+func _on_Player_bitGarbage():	
+	score = score - 1
+	$Timer.start($Timer.time_left - time_penalty)
