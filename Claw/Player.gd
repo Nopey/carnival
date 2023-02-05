@@ -20,11 +20,13 @@ func _process(delta):
 	walk(delta)
 	gentle_spin()
 	bob_for_turnips(delta)
-	#time_remaining -= delta
-	#if time_remaining < 0:
-		#queue_free() # TODO: proper game-over state, send back to overworld
-	#else:
-		#timer.text = str(round(time_remaining))
+
+	var mouth_art = bob_mouths[bob_state]
+	if mouth_art is Array:
+		var idx = (state_progress * ANIM_SPEED) as int % mouth_art.size()
+		mouth_art = mouth_art[idx]
+	$Mouth/Sprite.texture = mouth_art
+
 
 func walk(delta):
 	var input = Vector2(
@@ -55,8 +57,11 @@ onready var bob_mouths = {
 	BobState.DOWN:		load("res://Claw/carrot_face_down.png"),
 	BobState.DOWN_HOLD:	load("res://Claw/carrot_face_down_hold.png"),
 	BobState.UP:		load("res://Claw/carrot_face.png"),
-	BobState.UP_GOTCHA:	load("res://Claw/carrot_face.png")
+	# two images: animates chewing
+	BobState.UP_GOTCHA:	[load("res://Claw/carrot_face_down_hold.png"), load("res://Claw/carrot_face_down.png")]
 }
+# speaking of chewing
+const ANIM_SPEED = 8
 
 var bob_state = BobState.IDLE
 var state_progress = 0
@@ -165,7 +170,6 @@ func transition_to(state):
 	bob_state = state
 
 	# to-state
-	$Mouth/Sprite.texture = bob_mouths[bob_state]
 	match bob_state:
 		BobState.UP_GOTCHA:
 			$bite_sfx.play()
