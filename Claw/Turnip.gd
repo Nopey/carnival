@@ -6,6 +6,7 @@ export var flee_rate: float
 export var flee_rate_rate: float
 
 export(Array, Texture) var turnip_arts
+export(Array, AudioStream) var screams
 
 const NOMINAL_FLEE_RATE = 40.0
 
@@ -95,7 +96,6 @@ func _on_Player_bite():
 	if is_garbage:
 		pass # TODO: garbage eats
 	else:
-		$sfx.play()
 		$eat_particles.visible = true
 	$Sprite.visible = false
 	flee_rate = 0
@@ -103,6 +103,11 @@ func _on_Player_bite():
 func set_position(pos : Vector2):
 	self.global_position = pos
 
+func play_scream():
+	if(!$sfx.playing && screams.size() > 0):
+		var stream = screams[int(rand_range(0, screams.size()))]
+		$sfx.set_stream(stream)
+		$sfx.play()
 
 func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	var offset = global_position - target

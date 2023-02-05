@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Claw/Turnip.gd" type="Script" id=1]
 [ext_resource path="res://Claw/turnip_inanimate1.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Claw/turnip_debris2.png" type="Texture" id=5]
 [ext_resource path="res://Claw/turnip_debris1.png" type="Texture" id=6]
 [ext_resource path="res://Claw/turnip_debris3.png" type="Texture" id=7]
+[ext_resource path="res://Claw/sounds/scream_short_3.wav" type="AudioStream" id=8]
+[ext_resource path="res://Claw/sounds/scream_short_1.wav" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 45.0
@@ -15,6 +17,7 @@ radius = 45.0
 script = ExtResource( 1 )
 flee_rate = 10.0
 turnip_arts = [ ExtResource( 2 ), ExtResource( 3 ) ]
+screams = [ ExtResource( 9 ), ExtResource( 4 ), ExtResource( 8 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
