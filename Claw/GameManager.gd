@@ -18,9 +18,11 @@ export var time_reward: float = 5
 export var time_penalty: float = 5
 export var score : int = 0
 onready var timer = $Timer
-export var score_string : String = "You devoured, %s of your kin, you monster."
+export var score_string : String = "You devoured {turnips} of your kin, you monster, and {garbage} pounds of garbage."
 
 var spawning_allowed : bool = true
+var garbage_ate : int = 0
+var turnips_ate : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,7 +53,6 @@ func _process(delta):
 		
 	increase_difficulty()
 	
-# to do: this is a bad curve
 func increase_difficulty():
 	
 	if(score > 0):
@@ -97,7 +98,7 @@ func _on_Timer_timeout():
 	$TimerUi.hide()
 	get_parent().get_node("Score").hide()	
 	$game_over_label.show()
-	$score.text = score_string % score
+	$score.text = score_string.format({"turnips": score, "garbage": garbage_ate})
 	$score.show()
 	
 func clean_up():
@@ -110,9 +111,11 @@ func clean_up():
 func _on_Player_bitTurnip():	
 	count_turnips = count_turnips - 1	
 	score = score + 1
+	turnips_ate = turnips_ate + 1
 	timer.start(timer.time_left + time_reward)
 	
 func _on_Player_bitGarbage():	
 	count_garbage = count_garbage - 1
 	score = score - 1
+	garbage_ate = garbage_ate + 1
 	timer.start(timer.time_left - time_penalty)
