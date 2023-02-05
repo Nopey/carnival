@@ -13,8 +13,6 @@ export var target: Vector2 = Vector2(600, 400)
 export var max_dist: float = 800  # ugly fallback for bucket failure
 export var is_garbage: bool = false
 
-signal die(id)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_garbage:

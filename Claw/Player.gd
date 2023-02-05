@@ -11,6 +11,7 @@ var points = 0
 export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
 
 signal bitGarbage()
+signal bitTurnip()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -155,7 +156,8 @@ func transition_to(state):
 		BobState.UP_GOTCHA:
 			if gotcha.is_garbage:
 				emit_signal("bitGarbage")
-			gotcha = null
+			else:
+				emit_signal("bitTurnip")
 			score.text = str(points)
 
 			gotcha.queue_free()
