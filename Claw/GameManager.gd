@@ -33,15 +33,30 @@ func _ready():
 const turnip_delay = 3
 var next_turnip_timer
 
+const garbage_delay = 5
+var next_garbage_timer = garbage_delay
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	next_turnip_timer -= delta
 	if count_turnips < max_turnips and next_turnip_timer < 0:
 		create_turnip(false)
-		
-	if(count_garbage < max_garbage):
+	
+	next_garbage_timer -= delta	
+	if(count_garbage < max_garbage && next_garbage_timer < 0):
 		create_garbage()
-
+		
+	increase_difficulty()
+	
+# to do: this is a bad curve
+func increase_difficulty():
+	
+	if(score > 0):
+		var new_chance = chance_to_spawn_garbage * score
+		if (new_chance < 1.0):
+			chance_to_spawn_garbage = new_chance
+		else:
+			chance_to_spawn_garbage = 1.0
 
 func create_turnip(is_onready: bool):
 
@@ -65,7 +80,9 @@ func create_garbage():
 		count_garbage = count_garbage + 1
 		add_child(new_garbage)
 		new_garbage.set_owner(self)
-		new_garbage.global_position = get_random_position()	
+		new_garbage.global_position = get_random_position()
+		
+	next_garbage_timer = garbage_delay
 
 func get_random_position():
 	var pos = self.global_position + spawn_radius * Vector2(randf() * 2.0 - 1.0, randf() * 2.0 - 1.0).normalized()
