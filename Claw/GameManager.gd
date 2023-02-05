@@ -27,7 +27,7 @@ func _ready():
 	player.connect("bitTurnip", self, "_on_Player_bitTurnip")
 	
 	timer.start(start_time)
-	for x in range(5):
+	for _x in range(5):
 		create_turnip(false)
 
 const turnip_delay = 3
@@ -67,7 +67,6 @@ func create_turnip(is_onready: bool):
 	new_turnip.set_owner(self)
 	new_turnip.global_position = get_random_position()
 	
-	new_turnip.connect("die", self, "_on_Turnip_die")
 	if not is_onready:
 		new_turnip.flee_rate *= 2
 		new_turnip.flee_rate_rate += 15
@@ -90,6 +89,7 @@ func get_random_position():
 
 func _on_Timer_timeout():
 	# to do: game over
+	$gameover.play()
 	pass
 	
 func _on_Player_bitTurnip():	
