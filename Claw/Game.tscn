@@ -44,6 +44,7 @@ autoplay = true
 bus = "Music"
 
 [node name="Timer" type="Timer" parent="GameManager"]
+one_shot = true
 
 [node name="TimerUi" type="Label" parent="GameManager"]
 margin_left = -840.0

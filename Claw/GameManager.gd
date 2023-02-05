@@ -67,7 +67,6 @@ func create_turnip(is_onready: bool):
 	new_turnip.set_owner(self)
 	new_turnip.global_position = get_random_position()
 	
-	new_turnip.connect("die", self, "_on_Turnip_die")
 	if not is_onready:
 		new_turnip.flee_rate *= 2
 		new_turnip.flee_rate_rate += 15
