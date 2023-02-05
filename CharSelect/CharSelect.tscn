@@ -9,17 +9,12 @@
 [ext_resource path="res://CharSelect/Selected.gd" type="Script" id=7]
 [ext_resource path="res://CharSelect/CharSelect.gd" type="Script" id=8]
 [ext_resource path="res://CharSelect/celeriacB.png" type="Texture" id=9]
-[ext_resource path="res://CharSelect/selected.png" type="Texture" id=10]
+[ext_resource path="res://CharSelect/lil_leaf_arrow.png" type="Texture" id=10]
 [ext_resource path="res://CharSelect/carrot_hover.png" type="Texture" id=11]
 [ext_resource path="res://CharSelect/potatoB.png" type="Texture" id=12]
 
 [node name="CharSelect" type="Node2D"]
 script = ExtResource( 8 )
-
-[node name="Selected" type="Sprite" parent="."]
-position = Vector2( 828, 762 )
-texture = ExtResource( 10 )
-script = ExtResource( 7 )
 
 [node name="Stumps" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -68,6 +63,11 @@ texture = ExtResource( 6 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Back"]
 polygon = PoolVector2Array( -58, 64, -17, 60, 123, 28, 122, -24, 102, -67, 10, -60, -56, -32, -128, 9, -101, 43 )
+
+[node name="Selected" type="Sprite" parent="."]
+position = Vector2( 841, 219 )
+texture = ExtResource( 10 )
+script = ExtResource( 7 )
 
 [connection signal="input_event" from="Stumps/Carrot" to="Stumps/Carrot" method="_on_input_event"]
 [connection signal="mouse_entered" from="Stumps/Carrot" to="Stumps/Carrot" method="_on_hover_start"]
