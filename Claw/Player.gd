@@ -1,8 +1,6 @@
 extends Area2D
 
 onready var mouth = $Mouth
-onready var timer = $"../GameManager/Timer"
-onready var score = $"../Score"
 export var speed: float = 200
 
 var time_remaining  = 60.0
@@ -151,6 +149,9 @@ func bob_for_turnips(delta):
 			turnip.flee_path = (turnip.flee_path + bump * delta * 500 / turnip.flee_rate).normalized()
 			turnip.flee_rate += delta * 200
 			turnip.flee_rate_rate = 100
+			
+			if(bob_state == BobState.DOWN):
+				turnip.play_scream()
 
 func is_state_done():
 	if bob_state == BobState.IDLE:
@@ -183,14 +184,12 @@ func transition_to(state):
 			state_progress = 0
 		BobState.UP_GOTCHA:
 			emit_signal("bitTurnip")
-			score.text = str(points)
 
 			gotcha.queue_free()
 			gotcha = null
 		BobState.UP_GARBAGE:
-			emit_signal("bitGarbage")
-			score.text = str(points)
 
+			emit_signal("bitGarbage")
 			gotcha.queue_free()
 			gotcha = null
 

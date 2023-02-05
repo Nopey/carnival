@@ -54,18 +54,6 @@ centered = false
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
 
-[node name="Score" type="Label" parent="."]
-margin_left = 587.0
-margin_top = -443.0
-margin_right = 2507.0
-margin_bottom = -323.0
-grow_horizontal = 2
-rect_rotation = 30.0
-theme = ExtResource( 3 )
-text = "0"
-align = 1
-script = ExtResource( 11 )
-
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2( 864, 486 )
 script = ExtResource( 5 )
@@ -74,16 +62,6 @@ garbage = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ) ]
 
 [node name="Timer" type="Timer" parent="GameManager"]
 one_shot = true
-
-[node name="TimerUi" type="Label" parent="GameManager"]
-margin_left = -840.0
-margin_top = -485.0
-margin_right = -640.0
-margin_bottom = -285.0
-rect_pivot_offset = Vector2( 0.5, 0 )
-theme = ExtResource( 3 )
-text = "60"
-script = ExtResource( 6 )
 
 [node name="music" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource( 1 )
@@ -95,7 +73,29 @@ bus = "Music"
 stream = ExtResource( 12 )
 volume_db = 3.0
 
-[node name="game_over_label" type="Label" parent="GameManager"]
+[node name="ScoreUI" type="Label" parent="GameManager"]
+margin_left = -277.0
+margin_top = -929.0
+margin_right = 1643.0
+margin_bottom = -809.0
+grow_horizontal = 2
+rect_rotation = 30.0
+theme = ExtResource( 3 )
+text = "0"
+align = 1
+script = ExtResource( 11 )
+
+[node name="TimerUI" type="Label" parent="GameManager"]
+margin_left = -840.0
+margin_top = -485.0
+margin_right = -640.0
+margin_bottom = -285.0
+rect_pivot_offset = Vector2( 0.5, 0 )
+theme = ExtResource( 3 )
+text = "60"
+script = ExtResource( 6 )
+
+[node name="game_over_text" type="Label" parent="GameManager"]
 visible = false
 margin_left = -671.0
 margin_top = -240.0
@@ -105,14 +105,14 @@ theme = ExtResource( 3 )
 text = "The Game Is Now Over, Yes"
 align = 1
 
-[node name="score" type="Label" parent="GameManager"]
+[node name="score_text" type="Label" parent="GameManager"]
 visible = false
 margin_left = -489.0
 margin_top = -75.0
 margin_right = 706.0
 margin_bottom = 291.0
 theme = ExtResource( 3 )
-text = "You devoured, %s of your kin, you monster."
+text = "You devoured, %s of your kin and %s pound(s) of garbage, you monster."
 align = 1
 autowrap = true
 

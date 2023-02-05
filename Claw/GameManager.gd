@@ -18,7 +18,9 @@ export var time_reward: float = 5
 export var time_penalty: float = 5
 export var score : int = 0
 onready var timer = $Timer
-export var score_string : String = "You devoured {turnips} of your kin and {garbage} pounds of garbage, you monster."
+export var score_string : String = "You devoured {turnips} of your kin and {garbage} pound(s) of garbage, you monster."
+export var add_string : String = "+{value}"
+export var sub_string : String = "-{value}"
 
 var game_over : bool = false
 var garbage_ate : int = 0
@@ -34,6 +36,11 @@ func _ready():
 	timer.start(start_time)
 	for _x in range(5):
 		create_turnip(false)
+		
+	$game_over_text.hide()
+	$score_text.hide()
+	$ScoreUI.show()
+	$TimerUI.show()
 
 const turnip_delay = 3
 var next_turnip_timer
@@ -97,11 +104,11 @@ func _on_Timer_timeout():
 		game_over = true
 		clean_up()
 		$gameover.play()
-		$TimerUi.hide()
-		get_parent().get_node("Score").hide()	
-		$game_over_label.show()
-		$score.text = score_string.format({"turnips": score, "garbage": garbage_ate})
-		$score.show()
+		$TimerUI.hide()
+		$ScoreUI.hide()
+		$game_over_text.show()
+		$score_text.text = score_string.format({"turnips": score, "garbage": garbage_ate})
+		$score_text.show()
 	
 func clean_up():
 	var children = get_children()	
