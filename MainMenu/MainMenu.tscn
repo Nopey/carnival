@@ -86,14 +86,12 @@ stream = ExtResource( 15 )
 volume_db = -48.286
 
 [node name="RBeerLeftColour2" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 1344, 285 )
 rotation = 0.15942
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 13 )
 
 [node name="RBeerRightColour2" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 530, 285 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 12 )
