@@ -57,4 +57,5 @@ initial_velocity = 120.0
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
+[connection signal="area_entered" from="." to="." method="_on_Turnip_area_entered"]
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

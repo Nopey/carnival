@@ -58,9 +58,6 @@ func flee(delta):
 		flee_rate = 0
 		flee_path = Vector2.ZERO
 
-#const IDLE_SCALE: float = 1.0
-#const SUNK_SCALE: float = 1.5
-
 func sink():
 	if flee_rate <= 0:
 		return
@@ -69,6 +66,22 @@ func sink():
 	$Sprite.modulate = lerp(Color.brown, Color.white, progress)
 	self.scale = Vector2(scale, scale)
 	self.z_index = scale
+
+func bump_other_turnip(area):
+	if not "flee_rate" in area: # hack to detect turnips without mentioning turnip
+		return
+	var turnip: Turnip = area
+	var normal = (turnip.global_position - self.global_position).normalized()
+	var tangent = normal.tangent()
+	if self.flee_path.dot(normal) > 0:
+		self.flee_path = self.flee_path.reflect(tangent)
+	if turnip.flee_path.dot(normal) < 0:
+		turnip.flee_path = turnip.flee_path.reflect(tangent)
+	self.flee_path -= normal
+	turnip.flee_path += normal
+	self.flee_path = self.flee_path.normalized()
+	turnip.flee_path = turnip.flee_path.normalized()
+	self.flee_rate_rate += 50
 
 func _on_Player_bite():
 	$sfx.play()
@@ -85,3 +98,7 @@ func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	var offset = global_position - target
 	flee_path = -offset.normalized()
 	flee_rate = 100
+
+
+func _on_Turnip_area_entered(area):
+	bump_other_turnip(area)
