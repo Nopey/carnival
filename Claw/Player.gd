@@ -147,6 +147,8 @@ func bob_for_turnips(delta):
 func is_state_done():
 	if bob_state == BobState.IDLE:
 		return Input.is_action_just_pressed("ui_accept")
+	elif bob_state == BobState.DOWN_HOLD && gotcha:
+		return state_progress > 0.1
 	else:
 		return state_progress > get_state_length()
 
@@ -155,7 +157,7 @@ func get_state_length():
 		BobState.DOWN:
 			return 0.9
 		BobState.DOWN_HOLD:
-			return 0.2
+			return 0.3
 		BobState.UP:
 			return 1.4
 		BobState.UP_GOTCHA:

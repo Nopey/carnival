@@ -88,9 +88,20 @@ func get_random_position():
 	return pos
 
 func _on_Timer_timeout():
-	# to do: game over
+	clean_up()
 	$gameover.play()
-	pass
+	$TimerUi.hide()
+	get_parent().get_node("Score").hide()	
+	$game_over_label.show()
+	$score.text = $score.text % score
+	$score.show()
+	
+func clean_up():
+	var children = get_children()	
+	
+	for child in children:
+		if child is Turnip:
+			child.queue_free()
 	
 func _on_Player_bitTurnip():	
 	count_turnips = count_turnips - 1	
