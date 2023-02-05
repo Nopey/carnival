@@ -81,7 +81,7 @@ func set_position(pos : Vector2):
 	self.global_position = pos
 
 
-func _on_VisibilityNotifier2D_viewport_exited(viewport):
+func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	var offset = global_position - target
 	flee_path = -offset.normalized()
 	flee_rate = 100
