@@ -139,13 +139,14 @@ func transition_to(state):
 		BobState.IDLE:
 			state_progress = 0
 		BobState.UP_GOTCHA:
-			gotcha.queue_free()
 			if gotcha.is_garbage:
 				points -= 1
 			else:
 				points += 1
-			gotcha = null
 			score.text = str(points)
+
+			gotcha.queue_free()
+			gotcha = null
 
 	bob_state = state
 
