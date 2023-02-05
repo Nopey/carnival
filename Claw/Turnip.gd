@@ -99,7 +99,6 @@ func _on_Player_bite():
 		$eat_particles.visible = true
 	$Sprite.visible = false
 	flee_rate = 0
-	emit_signal("die", turnip_id)
 
 func set_position(pos : Vector2):
 	self.global_position = pos

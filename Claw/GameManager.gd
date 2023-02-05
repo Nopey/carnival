@@ -18,9 +18,9 @@ export var time_reward: float = 5
 export var time_penalty: float = 5
 export var score : int = 0
 onready var timer = $Timer
-export var score_string : String = "You devoured {turnips} of your kin, you monster, and {garbage} pounds of garbage."
+export var score_string : String = "You devoured {turnips} of your kin and {garbage} pounds of garbage, you monster."
 
-var spawning_allowed : bool = true
+var game_over : bool = false
 var garbage_ate : int = 0
 var turnips_ate : int = 0
 
@@ -44,11 +44,11 @@ var next_garbage_timer = garbage_delay
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	next_turnip_timer -= delta
-	if count_turnips < max_turnips and next_turnip_timer < 0 and spawning_allowed:
+	if count_turnips < max_turnips and next_turnip_timer < 0 and !game_over:
 		create_turnip(false)
 	
 	next_garbage_timer -= delta	
-	if count_garbage < max_garbage and next_garbage_timer < 0 and spawning_allowed:
+	if count_garbage < max_garbage and next_garbage_timer < 0 and !game_over:
 		create_garbage()
 		
 	increase_difficulty()
@@ -92,14 +92,16 @@ func get_random_position():
 	return pos
 
 func _on_Timer_timeout():
-	spawning_allowed = false
-	clean_up()
-	$gameover.play()
-	$TimerUi.hide()
-	get_parent().get_node("Score").hide()	
-	$game_over_label.show()
-	$score.text = score_string.format({"turnips": score, "garbage": garbage_ate})
-	$score.show()
+	
+	if !game_over:
+		game_over = true
+		clean_up()
+		$gameover.play()
+		$TimerUi.hide()
+		get_parent().get_node("Score").hide()	
+		$game_over_label.show()
+		$score.text = score_string.format({"turnips": score, "garbage": garbage_ate})
+		$score.show()
 	
 func clean_up():
 	var children = get_children()	
