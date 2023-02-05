@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
@@ -6,17 +6,51 @@
 [ext_resource path="res://Claw/Bucket.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Claw/GameManager.gd" type="Script" id=5]
 [ext_resource path="res://Claw/TimerUI.gd" type="Script" id=6]
-[ext_resource path="res://Claw/garbage/Waterbottle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Claw/garbage/Bottle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Claw/garbage/Bandage.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Claw/garbage/Birdtrap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Claw/Turnip.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Claw/ScoreUI.gd" type="Script" id=11]
 [ext_resource path="res://Claw/sounds/you win or whatever.wav" type="AudioStream" id=12]
+[ext_resource path="res://Claw/sky.png" type="Texture" id=13]
+[ext_resource path="res://Claw/barrel_top.png" type="Texture" id=14]
+[ext_resource path="res://Claw/rootbeer.png" type="Texture" id=15]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 shifteduv = UV;
+	vec2 scroll_dir = vec2(0.06, 0.1);
+    shifteduv += TIME * scroll_dir;
+    shifteduv.x += sin(TIME) * 0.1;
+	shifteduv = mod(shifteduv, 1.0);
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Sky" type="Sprite" parent="."]
+position = Vector2( -62, 17 )
+texture = ExtResource( 13 )
+centered = false
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 670, 280 )
+
+[node name="BarrelTop" type="Sprite" parent="."]
+texture = ExtResource( 14 )
+centered = false
+
+[node name="Rootbeer" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 15 )
+centered = false
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
 
