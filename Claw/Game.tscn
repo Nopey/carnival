@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
+[ext_resource path="res://Claw/sounds/circus1_master.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Claw/fonts/carnival.tres" type="Theme" id=3]
 [ext_resource path="res://Claw/Bucket.tscn" type="PackedScene" id=4]
@@ -65,7 +65,7 @@ one_shot = true
 
 [node name="music" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource( 1 )
-volume_db = -20.0
+volume_db = -10.0
 autoplay = true
 
 [node name="gameover" type="AudioStreamPlayer" parent="GameManager"]
