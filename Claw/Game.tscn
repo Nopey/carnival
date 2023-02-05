@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Claw/garbage/Bandage.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Claw/garbage/Birdtrap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Claw/Turnip.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Claw/ScoreUI.gd" type="Script" id=11]
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,6 +29,7 @@ rect_rotation = 30.0
 theme = ExtResource( 3 )
 text = "0"
 align = 1
+script = ExtResource( 11 )
 
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2( 864, 486 )
