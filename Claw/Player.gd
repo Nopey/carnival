@@ -9,8 +9,8 @@ var points = 0
 export var screen_center: Vector2 = Vector2(1920, 1080) / 2.0
 export var allowed_region: Vector2 = Vector2(300, 200)
 
-signal bitGarbage()
-signal bitTurnip()
+signal bitGarbage(position)
+signal bitTurnip(position)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -174,9 +174,9 @@ func transition_to(state):
 			state_progress = 0
 		BobState.UP_GOTCHA:
 			if gotcha.is_garbage:
-				emit_signal("bitGarbage")
+				emit_signal("bitGarbage", $Mouth.get_global_position())
 			else:
-				emit_signal("bitTurnip")
+				emit_signal("bitTurnip", $Mouth.get_global_position())
 
 			gotcha.queue_free()
 			gotcha = null

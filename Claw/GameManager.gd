@@ -6,6 +6,8 @@ class_name GameManager
 # var b = "text"
 
 export var turnip: PackedScene = load("res://Claw/Turnip.tscn")
+export var text_floater_positive: PackedScene = load("res://Claw/TextFloaterGreen.tscn")
+export var text_floater_negative: PackedScene = load("res://Claw/TextFloaterRed.tscn")
 export(Array, PackedScene) var garbage = []
 export var count_turnips : int = 0
 export var count_garbage : int = 0
@@ -22,6 +24,9 @@ export var stats_string : String = "You devoured {turnips} of your kin and {garb
 export var score_string : String = "Your score is {value}!"
 export var add_string : String = "+{value}"
 export var sub_string : String = "-{value}"
+export var add_time_string : String = "+{value} sec"
+export var sub_time_string : String = "-{value} sec"
+export var floater_delay : float = 1.0
 
 var game_over : bool = false
 var garbage_ate : int = 0
@@ -121,14 +126,41 @@ func clean_up():
 		if child is Turnip:
 			child.queue_free()
 	
-func _on_Player_bitTurnip():	
+func _on_Player_bitTurnip(position):	
+	
+	timer.start(timer.time_left + time_reward)
+	do_positive_floaters(position, floater_delay)
+	
 	count_turnips = count_turnips - 1	
 	score = score + 1
-	turnips_ate = turnips_ate + 1
-	timer.start(timer.time_left + time_reward)
+	turnips_ate = turnips_ate + 1	
 	
-func _on_Player_bitGarbage():	
+func _on_Player_bitGarbage(position):	
+	
+	timer.start(timer.time_left - time_penalty)
+	do_negative_floaters(position, floater_delay)
+	
 	count_garbage = count_garbage - 1
 	score = score - 1
-	garbage_ate = garbage_ate + 1
-	timer.start(timer.time_left - time_penalty)
+	garbage_ate = garbage_ate + 1	
+	
+func do_positive_floaters(position, delay):
+	
+	create_text_floater_positive(add_string.format({"value": 1}), position)
+	yield(get_tree().create_timer(delay), "timeout")
+	create_text_floater_positive(add_time_string.format({"value": time_reward}), position)
+	
+func do_negative_floaters(position, delay):	
+	create_text_floater_negative(sub_string.format({"value": 1}), position)
+	yield(get_tree().create_timer(delay), "timeout")
+	create_text_floater_negative(sub_time_string.format({"value": time_penalty}), position)
+	
+func create_text_floater_positive(text, position):
+	var new_floater = text_floater_positive.instance()
+	add_child(new_floater)
+	new_floater.setup(text, position)
+	
+func create_text_floater_negative(text, position):
+	var new_floater = text_floater_negative.instance()
+	add_child(new_floater)
+	new_floater.setup(text, position)
