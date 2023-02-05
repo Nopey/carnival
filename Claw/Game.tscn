@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
@@ -12,11 +12,27 @@
 [ext_resource path="res://Claw/Turnip.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Claw/ScoreUI.gd" type="Script" id=11]
 [ext_resource path="res://Claw/sounds/you win or whatever.wav" type="AudioStream" id=12]
+[ext_resource path="res://Claw/sky.png" type="Texture" id=13]
+[ext_resource path="res://Claw/barrel_top.png" type="Texture" id=14]
+[ext_resource path="res://Claw/rootbeer.png" type="Texture" id=15]
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Sky" type="Sprite" parent="."]
+position = Vector2( -62, 17 )
+texture = ExtResource( 13 )
+centered = false
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 670, 280 )
+
+[node name="BarrelTop" type="Sprite" parent="."]
+texture = ExtResource( 14 )
+centered = false
+
+[node name="Rootbeer" type="Sprite" parent="."]
+texture = ExtResource( 15 )
+centered = false
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
 

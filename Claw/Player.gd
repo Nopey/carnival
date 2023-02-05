@@ -61,16 +61,18 @@ enum BobState {
 	DOWN,
 	DOWN_HOLD, # hold at the bottom for a moment
 	UP,
-	UP_GOTCHA # got the turnip
+	UP_GOTCHA, # got the turnip
+	UP_GARBAGE # got garbage, yuck!
 }
 
 onready var bob_mouths = {
-	BobState.IDLE:		load("res://Claw/carrot_face.png"),
-	BobState.DOWN:		load("res://Claw/carrot_face_down.png"),
-	BobState.DOWN_HOLD:	load("res://Claw/carrot_face_down_hold.png"),
-	BobState.UP:		load("res://Claw/carrot_face.png"),
+	BobState.IDLE:			load("res://Claw/carrot_face.png"),
+	BobState.DOWN:			load("res://Claw/carrot_face_down.png"),
+	BobState.DOWN_HOLD:		load("res://Claw/carrot_face_down_hold.png"),
+	BobState.UP:			load("res://Claw/carrot_face.png"),
 	# two images: animates chewing
-	BobState.UP_GOTCHA:	[load("res://Claw/carrot_face_down_hold.png"), load("res://Claw/carrot_face_down.png")]
+	BobState.UP_GOTCHA:		[load("res://Claw/carrot_face_down_hold.png"), load("res://Claw/carrot_face_down.png")],
+	BobState.UP_GARBAGE:	load("res://Claw/carrot_face_distress.png"),
 }
 # speaking of chewing
 const ANIM_SPEED = 8
@@ -102,9 +104,15 @@ func bob_for_turnips(delta):
 			to_scale = BOB_IDLE_SCALE
 		BobState.UP_GOTCHA:
 			to_scale = BOB_IDLE_SCALE
+		BobState.UP_GARBAGE:
+			to_scale = BOB_IDLE_SCALE
 	var progress = state_progress / get_state_length()
 	var scale = lerp(from_scale, to_scale, progress)
 	self.scale = Vector2(scale, scale)
+	var tint = lerp(Color("#081515"), Color.white, clamp(2.1 - scale, 0.0, 1.0))
+	$BodySprite.modulate = tint
+	$Mouth/Sprite.modulate = tint
+	$"../Bucket/Sprite".modulate = tint
 
 	# grab turnips
 	if bob_state == BobState.DOWN_HOLD && !gotcha:
@@ -132,7 +140,7 @@ func bob_for_turnips(delta):
 			$splash.play()
 
 	# bump turnips out of the way
-	if bob_state == BobState.DOWN || bob_state == BobState.UP || bob_state == BobState.UP_GOTCHA:
+	if bob_state == BobState.DOWN || bob_state == BobState.UP || bob_state == BobState.UP_GOTCHA || bob_state == BobState.UP_GARBAGE:
 		for area in self.get_overlapping_areas():
 			if not area is Turnip:
 				continue
@@ -162,6 +170,8 @@ func get_state_length():
 			return 1.4
 		BobState.UP_GOTCHA:
 			return 2.0
+		BobState.UP_GARBAGE:
+			return 2.4
 		_:
 			return INF
 
@@ -198,12 +208,16 @@ func get_next_state():
 		BobState.DOWN:
 			return BobState.DOWN_HOLD
 		BobState.DOWN_HOLD:
-			if gotcha:
+			if gotcha && gotcha.is_garbage:
+				return BobState.UP_GARBAGE
+			elif gotcha:
 				return BobState.UP_GOTCHA
 			return BobState.UP
 		BobState.UP:
 			return BobState.IDLE
 		BobState.UP_GOTCHA:
+			return BobState.IDLE
+		BobState.UP_GARBAGE:
 			return BobState.IDLE
 
 var gotcha = null
