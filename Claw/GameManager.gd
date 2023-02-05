@@ -27,20 +27,23 @@ func _ready():
 	player.connect("bitTurnip", self, "_on_Player_bitTurnip")
 	
 	timer.start(start_time)
-	pass # Replace with function body.
+	for x in range(5):
+		create_turnip(false)
 
+const turnip_delay = 3
+var next_turnip_timer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
-	if(count_turnips < max_turnips):
-		create_turnip()
+	next_turnip_timer -= delta
+	if count_turnips < max_turnips and next_turnip_timer < 0:
+		create_turnip(false)
 		
 	if(count_garbage < max_garbage):
 		create_garbage()
 
 
-func create_turnip():
+func create_turnip(is_onready: bool):
 
 	var new_turnip = turnip.instance()
 	count_turnips = count_turnips + 1
@@ -49,6 +52,12 @@ func create_turnip():
 	new_turnip.set_owner(self)
 	new_turnip.global_position = get_random_position()
 	
+	new_turnip.connect("die", self, "_on_Turnip_die")
+	if not is_onready:
+		new_turnip.flee_rate *= 2
+		new_turnip.flee_rate_rate += 15
+	next_turnip_timer = turnip_delay
+
 func create_garbage():
 	
 	if (rand_range(0, 1) > 1 - chance_to_spawn_garbage):

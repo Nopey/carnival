@@ -17,7 +17,6 @@
 position = Vector2( 670, 280 )
 
 [node name="Bucket" parent="." instance=ExtResource( 4 )]
-position = Vector2( 960, 540 )
 
 [node name="Score" type="Label" parent="."]
 margin_left = 587.0
