@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Claw/sounds/disrespect copy right law.wav" type="AudioStream" id=1]
 [ext_resource path="res://Claw/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Claw/Bucket.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Claw/GameManager.gd" type="Script" id=5]
 [ext_resource path="res://Claw/TimerUI.gd" type="Script" id=6]
+[ext_resource path="res://Claw/garbage/Waterbottle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Claw/garbage/Bandage.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Claw/garbage/Birdtrap.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
 
@@ -47,5 +50,14 @@ autoplay = true
 bus = "Music"
 
 [node name="Timer" type="Timer" parent="GameManager"]
+
+[node name="Garbage Bandage" parent="GameManager" instance=ExtResource( 8 )]
+position = Vector2( -232, -35 )
+
+[node name="Garbage Birdtrap" parent="GameManager" instance=ExtResource( 9 )]
+position = Vector2( 108, 216 )
+
+[node name="Garbage Bottle" parent="GameManager" instance=ExtResource( 7 )]
+position = Vector2( 248, -171 )
 
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_Timer_timeout"]

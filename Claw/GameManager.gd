@@ -9,7 +9,7 @@ class_name GameManager
 export(PackedScene) var turnip = load("res://Claw/Turnip.tscn")
 export(Array, PackedScene) var turnips = [];
 export var max_turnips : int = 10
-export var spawn_radius: Vector2 = Vector2(300, 200)
+export var spawn_radius: Vector2 = Vector2(1920, 1080) / 3.0
 export var start_time : float = 60 
 export var time_reward: float = 5
 export var score : int = 0

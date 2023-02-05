@@ -11,13 +11,15 @@ const NOMINAL_FLEE_RATE = 40.0
 
 export var target: Vector2 = Vector2(600, 400)
 export var max_dist: float = 800  # ugly fallback for bucket failure
+export var is_garbage: bool = false
 
 signal die(id)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
-	$Sprite.texture = turnip_art
+	if not is_garbage:
+		var turnip_art = turnip_arts[turnip_id % turnip_arts.size()]
+		$Sprite.texture = turnip_art
 	
 	init_flee_params()
 
@@ -60,9 +62,6 @@ func flee(delta):
 		flee_rate = 0
 		flee_path = Vector2.ZERO
 
-#const IDLE_SCALE: float = 1.0
-#const SUNK_SCALE: float = 1.5
-
 func sink():
 	if flee_rate <= 0:
 		return
@@ -72,10 +71,29 @@ func sink():
 	self.scale = Vector2(scale, scale)
 	self.z_index = scale
 
+func bump_other_turnip(area):
+	if not "flee_rate" in area: # hack to detect turnips without mentioning turnip
+		return
+	var turnip = area
+	var normal = (turnip.global_position - self.global_position).normalized()
+	var tangent = normal.tangent()
+	if self.flee_path.dot(normal) > 0:
+		self.flee_path = self.flee_path.reflect(tangent)
+	if turnip.flee_path.dot(normal) < 0:
+		turnip.flee_path = turnip.flee_path.reflect(tangent)
+	self.flee_path -= normal
+	turnip.flee_path += normal
+	self.flee_path = self.flee_path.normalized()
+	turnip.flee_path = turnip.flee_path.normalized()
+	self.flee_rate_rate += 50
+
 func _on_Player_bite():
-	$sfx.play()
-	$idle_particles.emitting = false
-	$eat_particles.visible = true
+	if is_garbage:
+		pass # TODO: garbage eats
+	else:
+		$sfx.play()
+		$idle_particles.emitting = false
+		$eat_particles.visible = true
 	$Sprite.visible = false
 	flee_rate = 0
 	emit_signal("die", turnip_id)
@@ -88,3 +106,7 @@ func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	var offset = global_position - target
 	flee_path = -offset.normalized()
 	flee_rate = 100
+
+
+func _on_Turnip_area_entered(area):
+	bump_other_turnip(area)
