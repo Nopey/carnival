@@ -38,7 +38,15 @@ config/icon="res://Claw/turnip_inanimate2.png"
 
 [audio]
 
-default_bus_layout="res://Claw/claw_mixer.tres"
+default_bus_layout="res://Claw/audio_mixer.tres"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [global]
 
