@@ -28,6 +28,8 @@ export var add_time_string : String = "+{value} sec"
 export var sub_time_string : String = "-{value} sec"
 export var floater_delay : float = 1.0
 
+onready var audio_bus = preload("res://Claw/claw_mixer.tres")
+
 var game_over : bool = false
 var garbage_ate : int = 0
 var turnips_ate : int = 0
@@ -35,6 +37,7 @@ var turnips_ate : int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	AudioServer.set_bus_layout(audio_bus)
 	var player = get_parent().get_node("Player")
 	player.connect("bitGarbage", self, "_on_Player_bitGarbage")
 	player.connect("bitTurnip", self, "_on_Player_bitTurnip")
