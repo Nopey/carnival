@@ -10,6 +10,8 @@ const NOMINAL_FLEE_RATE = 40.0
 
 export var target: Vector2 = Vector2(600, 400)
 export var max_dist: float = 800  # ugly fallback for bucket failure
+export var timer_start : float = 60 # secs
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +19,7 @@ func _ready():
 	$Sprite.texture = turnip_art
 	
 	init_flee_params()
+	init_timer()
 
 func init_flee_params():
 
@@ -25,6 +28,11 @@ func init_flee_params():
 
 	flee_rate = NOMINAL_FLEE_RATE 								# to do: tune
 	flee_path = unit_vec.rotated(rand_rotation)
+
+func init_timer():
+
+	var timer = self.get_node("Timer")
+	timer.start(timer_start)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
