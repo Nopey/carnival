@@ -1,11 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://DumbButton.gd" type="Script" id=1]
 [ext_resource path="res://BackButton.png" type="Texture" id=2]
 [ext_resource path="res://Credits/Credits.gd" type="Script" id=3]
+[ext_resource path="res://Credits/credits_song.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Credits/credits.png" type="Texture" id=5]
 
 [node name="Credits" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="Credits" type="Sprite" parent="."]
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 5 )
+centered = false
 
 [node name="Back" type="Area2D" parent="."]
 position = Vector2( 150, 83 )
@@ -16,6 +23,10 @@ texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Back"]
 polygon = PoolVector2Array( -58, 64, -17, 60, 123, 28, 122, -24, 102, -67, 10, -60, -56, -32, -128, 9, -101, 43 )
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
 
 [connection signal="input_event" from="Back" to="Back" method="_on_input_event"]
 [connection signal="mouse_entered" from="Back" to="Back" method="_on_hover_start"]

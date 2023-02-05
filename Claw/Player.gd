@@ -199,9 +199,10 @@ func transition_to(state):
 		BobState.UP_GARBAGE:
 			gotcha.queue_free()
 			gotcha = null
+		BobState.DOWN:
+			$splash.play()
 		BobState.DOWN_HOLD:
 			$emptybite.play()
-			$splash.play()
 
 
 	bob_state = state
