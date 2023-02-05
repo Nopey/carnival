@@ -18,7 +18,8 @@ export var time_reward: float = 5
 export var time_penalty: float = 5
 export var score : int = 0
 onready var timer = $Timer
-export var score_string : String = "You devoured {turnips} of your kin and {garbage} pound(s) of garbage, you monster."
+export var stats_string : String = "You devoured {turnips} of your kin and {garbage} pound(s) of garbage, you monster."
+export var score_string : String = "Your score is {value}!"
 export var add_string : String = "+{value}"
 export var sub_string : String = "-{value}"
 
@@ -39,6 +40,7 @@ func _ready():
 		
 	$game_over_text.hide()
 	$score_text.hide()
+	$stats_text.hide()
 	$ScoreUI.show()
 	$TimerUI.show()
 
@@ -103,12 +105,14 @@ func _on_Timer_timeout():
 	if !game_over:
 		game_over = true
 		clean_up()
-		$gameover.play()
 		$TimerUI.hide()
 		$ScoreUI.hide()
+		$gameover.play()
 		$game_over_text.show()
-		$score_text.text = score_string.format({"turnips": score, "garbage": garbage_ate})
+		$score_text.text = score_string.format({"value": score})
 		$score_text.show()
+		$stats_text.text = stats_string.format({"turnips": turnips_ate, "garbage": garbage_ate})
+		$stats_text.show()
 	
 func clean_up():
 	var children = get_children()	

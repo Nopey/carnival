@@ -62,17 +62,24 @@ text = "60"
 script = ExtResource( 6 )
 
 [node name="game_over_text" type="Label" parent="GameManager"]
-visible = false
 margin_left = -671.0
-margin_top = -240.0
+margin_top = -404.0
 margin_right = 856.0
-margin_bottom = -120.0
+margin_bottom = -271.0
 theme = ExtResource( 3 )
 text = "The Game Is Now Over, Yes"
 align = 1
 
 [node name="score_text" type="Label" parent="GameManager"]
-visible = false
+margin_left = -668.0
+margin_top = -286.0
+margin_right = 859.0
+margin_bottom = -153.0
+theme = ExtResource( 3 )
+text = "Your Score is %s"
+align = 1
+
+[node name="stats_text" type="Label" parent="GameManager"]
 margin_left = -489.0
 margin_top = -75.0
 margin_right = 706.0
