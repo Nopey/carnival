@@ -147,9 +147,6 @@ func bob_for_turnips(delta):
 				$clap.play()
 				emit_signal("bitTurnip", $Mouth.get_global_position())
 			turnip_in_mouth(best_turnip)			
-		else:
-			$emptybite.play()
-			$splash.play()
 
 	# bump turnips out of the way
 	if bob_state == BobState.DOWN || bob_state == BobState.UP || bob_state == BobState.UP_GOTCHA || bob_state == BobState.UP_GARBAGE:
@@ -202,6 +199,10 @@ func transition_to(state):
 		BobState.UP_GARBAGE:
 			gotcha.queue_free()
 			gotcha = null
+		BobState.DOWN_HOLD:
+			$emptybite.play()
+			$splash.play()
+
 
 	bob_state = state
 	
