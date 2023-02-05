@@ -67,7 +67,6 @@ one_shot = true
 stream = ExtResource( 1 )
 volume_db = -20.0
 autoplay = true
-bus = "Music"
 
 [node name="gameover" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource( 12 )

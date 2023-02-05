@@ -42,27 +42,21 @@ shape = SubResource( 4 )
 
 [node name="bite_sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
-bus = "Player"
 
 [node name="chewing" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 pitch_scale = 1.5
 stream_paused = true
-bus = "Player"
 
 [node name="emptybite" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-bus = "Player"
 
 [node name="splash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
-bus = "Player"
 
 [node name="boo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -15.184
-bus = "Player"
 
 [node name="clap" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-bus = "Player"

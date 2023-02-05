@@ -38,7 +38,7 @@ config/icon="res://Claw/turnip_debris2.png"
 
 [audio]
 
-default_bus_layout="res://Claw/audio_mixer.tres"
+default_bus_layout=""
 
 [autoload]
 
