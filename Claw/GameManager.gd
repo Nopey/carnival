@@ -18,6 +18,7 @@ export var time_reward: float = 5
 export var time_penalty: float = 5
 export var score : int = 0
 onready var timer = $Timer
+export var score_string : String = "You devoured, %s of your kin, you monster."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -93,7 +94,7 @@ func _on_Timer_timeout():
 	$TimerUi.hide()
 	get_parent().get_node("Score").hide()	
 	$game_over_label.show()
-	$score.text = $score.text % score
+	$score.text = score_string % score
 	$score.show()
 	
 func clean_up():
