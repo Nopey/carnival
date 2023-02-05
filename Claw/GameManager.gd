@@ -6,17 +6,18 @@ class_name GameManager
 # var a = 2
 # var b = "text"
 
-export(PackedScene) var turnip = load("res://Claw/Turnip.tscn")
+export var turnip: PackedScene = load("res://Claw/Turnip.tscn")
 export(Array, PackedScene) var turnips = [];
 export var max_turnips : int = 10
 export var spawn_radius: Vector2 = Vector2(1920, 1080) / 3.0
 export var start_time : float = 60 
 export var time_reward: float = 5
 export var score : int = 0
+onready var timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.start(start_time)
+	timer.start(start_time)
 	pass # Replace with function body.
 
 
@@ -50,4 +51,4 @@ func _on_Timer_timeout():
 	
 func _on_Turnip_die():
 	score = score + 1
-	$Timer.start($Timer.time_left + time_reward)
+	timer.start(timer.time_left + time_reward)

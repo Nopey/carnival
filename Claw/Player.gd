@@ -91,10 +91,19 @@ func bob_for_turnips(delta):
 
 	# grab turnips
 	if bob_state == BobState.DOWN_HOLD && !gotcha:
-		for turnip in mouth.get_overlapping_areas():
-			if not turnip is Turnip:
+		var best_turnip: Turnip = null
+		var best_distance: float
+		for area in mouth.get_overlapping_areas():
+			if not area is Turnip:
 				continue
-			turnip_in_mouth(turnip)
+			var turnip: Turnip = area
+			var turnip_dist: float = turnip.global_position.distance_to(self.global_position)
+			if best_turnip and best_distance < turnip_dist:
+				continue
+			best_turnip = turnip
+			best_distance = turnip_dist
+		if best_turnip:
+			turnip_in_mouth(best_turnip)
 
 	for area in self.get_overlapping_areas():
 		if area is Bucket:
