@@ -27,6 +27,7 @@ export var sub_string : String = "-{value}"
 export var add_time_string : String = "+{value} sec"
 export var sub_time_string : String = "-{value} sec"
 export var floater_delay : float = 1.0
+export var change_scene_timer : float = 7.0
 
 onready var audio_bus = preload("res://Claw/claw_mixer.tres")
 
@@ -121,7 +122,7 @@ func _on_Timer_timeout():
 		$score_text.show()
 		$stats_text.text = stats_string.format({"turnips": turnips_ate, "garbage": garbage_ate})
 		$stats_text.show()
-		yield(get_tree().create_timer(5.0), "timeout")
+		yield(get_tree().create_timer(change_scene_timer), "timeout")
 		get_tree().change_scene("res://MainMenu/MainMenu.tscn")
 	
 func clean_up():
@@ -134,6 +135,7 @@ func clean_up():
 func _on_Player_bitTurnip(position):	
 	
 	timer.start(timer.time_left + time_reward)
+
 	do_positive_floaters(position, floater_delay)
 	
 	count_turnips = count_turnips - 1	
@@ -143,6 +145,7 @@ func _on_Player_bitTurnip(position):
 func _on_Player_bitGarbage(position):	
 	
 	timer.start(timer.time_left - time_penalty)
+	
 	do_negative_floaters(position, floater_delay)
 	
 	count_garbage = count_garbage - 1
