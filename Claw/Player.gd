@@ -176,7 +176,6 @@ func transition_to(state):
 				emit_signal("bitGarbage")
 			else:
 				emit_signal("bitTurnip")
-			score.text = str(points)
 
 			gotcha.queue_free()
 			gotcha = null

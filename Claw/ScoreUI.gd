@@ -8,7 +8,7 @@ extends Label
 var game_manager
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	game_manager = get_parent().get_node("GameManager")
+	game_manager = get_parent()
 	pass # Replace with function body.
 
 
