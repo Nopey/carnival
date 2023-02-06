@@ -140,7 +140,11 @@ func _on_Player_bitTurnip(position):
 	
 func _on_Player_bitGarbage(position):	
 	
-	timer.start(timer.time_left - time_penalty)
+	var new_time = timer.time_left - time_penalty
+	if new_time > 0:
+		timer.start(new_time)
+	else:
+		timer.start(0.5)	 # hack
 	
 	do_negative_floaters(position, floater_delay)
 	

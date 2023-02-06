@@ -65,7 +65,7 @@ one_shot = true
 
 [node name="music" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource( 1 )
-volume_db = -10.0
+volume_db = -25.0
 autoplay = true
 
 [node name="gameover" type="AudioStreamPlayer" parent="GameManager"]
