@@ -24,6 +24,8 @@ func _process(delta):
 	gentle_spin()
 	bob_for_turnips(delta)
 
+	$BodySprite.texture = bodies[Global.character]
+
 	var mouth_art = bob_mouths[Global.character][bob_state]
 	if mouth_art is Array:
 		var idx = (state_progress * ANIM_SPEED) as int % mouth_art.size()
@@ -65,6 +67,11 @@ enum BobState {
 
 const Character = Global.Character
 
+onready var bodies = {
+	Character.Carrot:	load("res://Claw/carrot_body.png"),
+	Character.Potato:		load("res://Claw/potato_body.png"),
+	#Character.Celeriac:	load("res://Claw/celeriac_body.png")
+}
 onready var bob_mouths = {
 	Character.Carrot: {
 		BobState.IDLE:			load("res://Claw/carrot_face.png"),
@@ -76,8 +83,22 @@ onready var bob_mouths = {
 		BobState.UP_GARBAGE:	load("res://Claw/carrot_face_distress.png")
 	},
 	Character.Potato: {
+		BobState.IDLE:			load("res://Claw/potato_face.png"),
+		BobState.DOWN:			load("res://Claw/potato_face_down.png"),
+		BobState.DOWN_HOLD:		load("res://Claw/potato_face_down_hold.png"),
+		BobState.UP:			load("res://Claw/potato_face.png"),
+		# two images: animates chewing
+		BobState.UP_GOTCHA:		[load("res://Claw/potato_face_down.png"), load("res://Claw/potato_face_down_chew.png")],
+		BobState.UP_GARBAGE:	load("res://Claw/potato_face.png")
 	},
 	Character.Celeriac: {
+		BobState.IDLE:			load("res://Claw/carrot_face.png"),
+		BobState.DOWN:			load("res://Claw/carrot_face_down.png"),
+		BobState.DOWN_HOLD:		load("res://Claw/carrot_face_down_hold.png"),
+		BobState.UP:			load("res://Claw/carrot_face.png"),
+		# two images: animates chewing
+		BobState.UP_GOTCHA:		[load("res://Claw/carrot_face_down_hold.png"), load("res://Claw/carrot_face_down.png")],
+		BobState.UP_GARBAGE:	load("res://Claw/carrot_face_distress.png")
 	}
 }
 # speaking of chewing
@@ -147,9 +168,6 @@ func bob_for_turnips(delta):
 				$clap.play()
 				emit_signal("bitTurnip", $Mouth.get_global_position())
 			turnip_in_mouth(best_turnip)			
-		else:
-			$emptybite.play()
-			$splash.play()
 
 	# bump turnips out of the way
 	if bob_state == BobState.DOWN || bob_state == BobState.UP || bob_state == BobState.UP_GOTCHA || bob_state == BobState.UP_GARBAGE:
@@ -202,6 +220,11 @@ func transition_to(state):
 		BobState.UP_GARBAGE:
 			gotcha.queue_free()
 			gotcha = null
+		BobState.DOWN:
+			$splash.play()
+		BobState.DOWN_HOLD:
+			$emptybite.play()
+
 
 	bob_state = state
 	

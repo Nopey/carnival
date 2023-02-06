@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://CharSelect/stumps.png" type="Texture" id=1]
 [ext_resource path="res://DumbButton.gd" type="Script" id=2]
@@ -8,17 +8,13 @@
 [ext_resource path="res://BackButton.png" type="Texture" id=6]
 [ext_resource path="res://CharSelect/Selected.gd" type="Script" id=7]
 [ext_resource path="res://CharSelect/CharSelect.gd" type="Script" id=8]
-[ext_resource path="res://Claw/garbage/birdtrap.png" type="Texture" id=9]
-[ext_resource path="res://CharSelect/selected.png" type="Texture" id=10]
+[ext_resource path="res://CharSelect/celeriacB.png" type="Texture" id=9]
+[ext_resource path="res://CharSelect/lil_leaf_arrow.png" type="Texture" id=10]
 [ext_resource path="res://CharSelect/carrot_hover.png" type="Texture" id=11]
+[ext_resource path="res://CharSelect/potatoB.png" type="Texture" id=12]
 
 [node name="CharSelect" type="Node2D"]
 script = ExtResource( 8 )
-
-[node name="Selected" type="Sprite" parent="."]
-position = Vector2( 828, 762 )
-texture = ExtResource( 10 )
-script = ExtResource( 7 )
 
 [node name="Stumps" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -37,7 +33,7 @@ centered = false
 
 [node name="Potato" type="Area2D" parent="Stumps"]
 script = ExtResource( 2 )
-hover_sprite = ExtResource( 9 )
+hover_sprite = ExtResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="Stumps/Potato"]
 texture = ExtResource( 3 )
@@ -67,6 +63,11 @@ texture = ExtResource( 6 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Back"]
 polygon = PoolVector2Array( -58, 64, -17, 60, 123, 28, 122, -24, 102, -67, 10, -60, -56, -32, -128, 9, -101, 43 )
+
+[node name="Selected" type="Sprite" parent="."]
+position = Vector2( 841, 219 )
+texture = ExtResource( 10 )
+script = ExtResource( 7 )
 
 [connection signal="input_event" from="Stumps/Carrot" to="Stumps/Carrot" method="_on_input_event"]
 [connection signal="mouse_entered" from="Stumps/Carrot" to="Stumps/Carrot" method="_on_hover_start"]
